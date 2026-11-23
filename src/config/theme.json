@@ -20,6 +20,18 @@
       "es": "Experiencias Curadas en Ciudad de México. Reserva Directa al Instante."
     },
     "hero": {
+      "mediaType": "video",
+      "poster": "/images/hero-video-poster.jpg",
+      "crossfadeMs": 1200,
+      "videos": [
+        "/videos/hero-01.mp4",
+        "/videos/hero-02.mp4",
+        "/videos/hero-03.mp4",
+        "/videos/hero-04.mp4",
+        "/videos/hero-05.mp4",
+        "/videos/hero-06.mp4",
+        "/videos/hero-07.mp4"
+      ],
       "eyebrow": {
         "en": "THE CURATED MEXICO CITY GUIDE · DIRECT OPERATOR RATES",
         "es": "GUÍA CURADA DE CIUDAD DE MÉXICO · TARIFAS DIRECTAS DE OPERADOR"

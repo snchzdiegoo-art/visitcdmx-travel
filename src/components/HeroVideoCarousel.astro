@@ -1,0 +1,305 @@
+---
+import type { Locale } from '../lib/i18n';
+
+interface Props {
+  mediaType?: string;
+  videos?: string[];
+  poster: string;
+  fallbackImage: string;
+  imageAlt: string;
+  crossfadeMs?: number;
+  locale: Locale;
+}
+
+const {
+  mediaType = 'image',
+  videos = [],
+  poster,
+  fallbackImage,
+  imageAlt,
+  crossfadeMs = 1200,
+  locale,
+} = Astro.props;
+
+const useVideo = mediaType === 'video' && videos.length > 0;
+const effectivePoster = poster || fallbackImage;
+---
+
+<div
+  class="absolute inset-0 overflow-hidden bg-obsidian"
+  data-hero-carousel={useVideo ? 'true' : 'false'}
+  data-videos={JSON.stringify(videos)}
+  data-crossfade-ms={String(crossfadeMs)}
+>
+  <!-- Instant LCP Poster / Static Fallback (always painted first at high priority) -->
+  <img
+    src={effectivePoster}
+    alt={imageAlt}
+    fetchpriority="high"
+    decoding="async"
+    class="absolute inset-0 w-full h-full object-cover opacity-75"
+  />
+
+  {useVideo && (
+    <>
+      <!-- Dual Crossfade Video Buffers (Zero black flash between sequential clips) -->
+      <video
+        data-hero-layer="0"
+        muted
+        playsinline
+        preload="metadata"
+        poster={effectivePoster}
+        aria-hidden="true"
+        class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity ease-in-out pointer-events-none"
+        style={`transition-duration: ${crossfadeMs}ms;`}
+      ></video>
+      <video
+        data-hero-layer="1"
+        muted
+        playsinline
+        preload="none"
+        aria-hidden="true"
+        class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity ease-in-out pointer-events-none"
+        style={`transition-duration: ${crossfadeMs}ms;`}
+      ></video>
+    </>
+  )}
+
+  <!-- Adaptive Editorial Scrim for Crisp WCAG Contrast over Bright Footage -->
+  <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/55 to-obsidian/35 pointer-events-none"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-obsidian/65 via-obsidian/20 to-transparent pointer-events-none"></div>
+
+  {useVideo && (
+    <div class="absolute bottom-5 right-4 sm:right-6 z-20 flex items-center gap-2.5">
+      <div class="hidden sm:flex items-center gap-1.5 rounded-full bg-obsidian/55 backdrop-blur-sm border border-white/15 px-3 py-1.5" aria-hidden="true">
+        {videos.map((_, idx) => (
+          <span
+            data-hero-dot={idx}
+            class:list={[
+              'h-1.5 rounded-full transition-all duration-300',
+              idx === 0 ? 'w-5 bg-mezcal' : 'w-1.5 bg-white/40',
+            ]}
+          ></span>
+        ))}
+      </div>
+
+      <button
+        type="button"
+        data-hero-toggle
+        aria-pressed="false"
+        aria-label={locale === 'es' ? 'Pausar video de fondo' : 'Pause background video'}
+        data-label-pause={locale === 'es' ? 'Pausar video de fondo' : 'Pause background video'}
+        data-label-play={locale === 'es' ? 'Reproducir video de fondo' : 'Play background video'}
+        class="inline-flex items-center gap-1.5 rounded-full bg-obsidian/65 hover:bg-obsidian/85 backdrop-blur-sm border border-white/20 text-ivory text-[11px] font-medium px-3 py-1.5 transition-colors cursor-pointer"
+      >
+        <span data-hero-icon-pause aria-hidden="true">❚❚</span>
+        <span data-hero-icon-play class="hidden" aria-hidden="true">▶</span>
+        <span data-hero-toggle-text class="hidden sm:inline">
+          {locale === 'es' ? 'Pausar' : 'Pause'}
+        </span>
+      </button>
+    </div>
+  )}
+</div>
+
+{useVideo && (
+  <script is:inline>
+    (function () {
+      const root = document.querySelector('[data-hero-carousel="true"]');
+      if (!root) return;
+
+      const videos = JSON.parse(root.getAttribute('data-videos') || '[]');
+      if (!videos.length) return;
+
+      const prefersReduced =
+        window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const saveData =
+        navigator.connection && navigator.connection.saveData === true;
+
+      const layerA = root.querySelector('[data-hero-layer="0"]');
+      const layerB = root.querySelector('[data-hero-layer="1"]');
+      const layers = [layerA, layerB];
+      const dots = Array.from(root.querySelectorAll('[data-hero-dot]'));
+      const toggleBtn = root.querySelector('[data-hero-toggle]');
+      const iconPause = root.querySelector('[data-hero-icon-pause]');
+      const iconPlay = root.querySelector('[data-hero-icon-play]');
+      const toggleText = root.querySelector('[data-hero-toggle-text]');
+
+      if (!layerA || !layerB) return;
+
+      let activeLayerIdx = 0;
+      let currentClipIdx = 0;
+      let isPaused = false;
+      let preloadedNextIdx = -1;
+      let transitioning = false;
+      let playTracked = false;
+
+      function updateDots(idx) {
+        dots.forEach(function (dot, i) {
+          if (i === idx) {
+            dot.classList.add('w-5', 'bg-mezcal');
+            dot.classList.remove('w-1.5', 'bg-white/40');
+          } else {
+            dot.classList.remove('w-5', 'bg-mezcal');
+            dot.classList.add('w-1.5', 'bg-white/40');
+          }
+        });
+      }
+
+      function updateToggleUi() {
+        if (!toggleBtn) return;
+        toggleBtn.setAttribute('aria-pressed', isPaused ? 'true' : 'false');
+        toggleBtn.setAttribute(
+          'aria-label',
+          isPaused
+            ? toggleBtn.getAttribute('data-label-play') || 'Play'
+            : toggleBtn.getAttribute('data-label-pause') || 'Pause'
+        );
+        if (iconPause) iconPause.classList.toggle('hidden', isPaused);
+        if (iconPlay) iconPlay.classList.toggle('hidden', !isPaused);
+        if (toggleText) {
+          const isEs = (document.documentElement.getAttribute('data-locale') || 'en') === 'es';
+          toggleText.textContent = isPaused ? (isEs ? 'Reproducir' : 'Play') : (isEs ? 'Pausar' : 'Pause');
+        }
+      }
+
+      function preloadNextClip() {
+        if (videos.length < 2) return;
+        const nextClipIdx = (currentClipIdx + 1) % videos.length;
+        if (preloadedNextIdx === nextClipIdx) return;
+        const standby = layers[1 - activeLayerIdx];
+        standby.src = videos[nextClipIdx];
+        standby.preload = 'auto';
+        standby.load();
+        preloadedNextIdx = nextClipIdx;
+      }
+
+      function crossfadeToNext() {
+        if (isPaused || transitioning || videos.length < 2) return;
+        transitioning = true;
+
+        const nextClipIdx = (currentClipIdx + 1) % videos.length;
+        const outgoing = layers[activeLayerIdx];
+        const incoming = layers[1 - activeLayerIdx];
+
+        if (preloadedNextIdx !== nextClipIdx) {
+          incoming.src = videos[nextClipIdx];
+          incoming.load();
+        }
+
+        function startFade() {
+          incoming.currentTime = 0;
+          const p = incoming.play();
+          if (p && typeof p.catch === 'function') p.catch(function () {});
+          incoming.classList.remove('opacity-0');
+          incoming.classList.add('opacity-85');
+          outgoing.classList.remove('opacity-85');
+          outgoing.classList.add('opacity-0');
+
+          activeLayerIdx = 1 - activeLayerIdx;
+          currentClipIdx = nextClipIdx;
+          preloadedNextIdx = -1;
+          updateDots(currentClipIdx);
+
+          setTimeout(function () {
+            outgoing.pause();
+            transitioning = false;
+          }, 1300);
+        }
+
+        if (incoming.readyState >= 2) {
+          startFade();
+        } else {
+          incoming.addEventListener('canplay', startFade, { once: true });
+          setTimeout(function () {
+            if (transitioning) startFade();
+          }, 1800);
+        }
+      }
+
+      function attachEvents(videoEl, layerIndex) {
+        videoEl.addEventListener('timeupdate', function () {
+          if (layerIndex !== activeLayerIdx || isPaused) return;
+          if (videoEl.duration && videoEl.currentTime > 2.0) {
+            preloadNextClip();
+          }
+          // Begin crossfade 0.9s before end of clip for seamless dissolve
+          if (videoEl.duration && videoEl.duration - videoEl.currentTime <= 0.95) {
+            crossfadeToNext();
+          }
+        });
+        videoEl.addEventListener('ended', function () {
+          if (layerIndex !== activeLayerIdx || isPaused) return;
+          if (videos.length === 1) {
+            videoEl.currentTime = 0;
+            videoEl.play().catch(function () {});
+          } else {
+            crossfadeToNext();
+          }
+        });
+      }
+
+      attachEvents(layerA, 0);
+      attachEvents(layerB, 1);
+
+      function startInitialPlayback() {
+        layerA.src = videos[0];
+        layerA.load();
+        layerA.addEventListener(
+          'canplay',
+          function () {
+            if (isPaused) return;
+            const p = layerA.play();
+            if (p && typeof p.then === 'function') {
+              p.then(function () {
+                layerA.classList.remove('opacity-0');
+                layerA.classList.add('opacity-85');
+                if (!playTracked) {
+                  playTracked = true;
+                  window.dataLayer = window.dataLayer || [];
+                  window.dataLayer.push({ event: 'hero_video_play', clip_count: videos.length });
+                }
+              }).catch(function () {
+                // Autoplay blocked by browser policy: keep crisp poster cleanly
+              });
+            }
+          },
+          { once: true }
+        );
+      }
+
+      if (prefersReduced || saveData) {
+        isPaused = true;
+        updateToggleUi();
+      } else {
+        // Start after first paint so LCP poster wins immediately
+        if ('requestAnimationFrame' in window) {
+          requestAnimationFrame(function () {
+            setTimeout(startInitialPlayback, 80);
+          });
+        } else {
+          startInitialPlayback();
+        }
+      }
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', function () {
+          isPaused = !isPaused;
+          const active = layers[activeLayerIdx];
+          if (isPaused) {
+            active.pause();
+          } else {
+            if (!active.src) {
+              startInitialPlayback();
+            } else {
+              active.classList.remove('opacity-0');
+              active.classList.add('opacity-85');
+              active.play().catch(function () {});
+            }
+          }
+          updateToggleUi();
+        });
+      }
+    })();
+  </script>
+)}

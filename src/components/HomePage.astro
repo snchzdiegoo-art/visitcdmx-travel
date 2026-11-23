@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroVideoCarousel from './HeroVideoCarousel.astro';
 import TourCard from './TourCard.astro';
 import theme from '../config/theme.json';
 import { getPlanUrl, getTourUrl, uiCopy, type Locale } from '../lib/i18n';
@@ -27,42 +28,59 @@ const pageDescription =
     ? 'Reserva directo tours curados en Ciudad de México con disponibilidad en vivo y tarifas sin sobreprecio de OTAs: Teotihuacán, Xochimilco, Coyoacán, Tacos y Mezcal, y traslados privados por SAT Mexico.'
     : 'Book curated Mexico City tours directly with real-time availability and zero OTA markups: Teotihuacan, Xochimilco, Anthropology Museum, Coyoacan Food Walk, Night Tacos & Mezcal, operated by SAT Mexico.';
 
-const organizationSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'TravelAgency',
-  name: theme.destination.brandName,
-  url: theme.destination.siteUrl,
-  description: pageDescription,
-  parentOrganization: {
-    '@type': 'Organization',
-    name: theme.operator.legalName,
+const homeSchemas: Record<string, unknown>[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'TravelAgency',
+    name: theme.destination.brandName,
+    url: theme.destination.siteUrl,
+    description: pageDescription,
+    parentOrganization: {
+      '@type': 'Organization',
+      name: theme.operator.legalName,
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: String(theme.operator.googleRating),
+      reviewCount: String(theme.operator.googleReviewCount),
+    },
+    areaServed: {
+      '@type': 'City',
+      name: 'Mexico City',
+    },
   },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: String(theme.operator.googleRating),
-    reviewCount: String(theme.operator.googleReviewCount),
-  },
-  areaServed: {
-    '@type': 'City',
-    name: 'Mexico City',
-  },
-};
+];
+
+if (theme.destination.hero.mediaType === 'video' && theme.destination.hero.videos?.length) {
+  homeSchemas.push({
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: theme.destination.hero.headline[locale],
+    description: theme.destination.hero.subheadline[locale],
+    thumbnailUrl: new URL(
+      theme.destination.hero.poster || theme.destination.hero.image,
+      theme.destination.siteUrl
+    ).toString(),
+    contentUrl: new URL(theme.destination.hero.videos[0], theme.destination.siteUrl).toString(),
+    uploadDate: '2026-11-22',
+  });
+}
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription} locale={locale} schemaJson={organizationSchema}>
-  <!-- Magazine Editorial Hero -->
+<BaseLayout title={pageTitle} description={pageDescription} locale={locale} schemaJson={homeSchemas}>
+  <!-- Magazine Editorial Hero with Parameterized Crossfade Video Carousel -->
   <section class="relative overflow-hidden bg-obsidian text-white">
-    <div class="absolute inset-0">
-      <img
-        src={theme.destination.hero.image}
-        alt={theme.destination.hero.imageAlt[locale]}
-        fetchpriority="high"
-        class="w-full h-full object-cover opacity-65"
-      />
-      <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/55 to-obsidian/30"></div>
-    </div>
+    <HeroVideoCarousel
+      mediaType={theme.destination.hero.mediaType}
+      videos={theme.destination.hero.videos}
+      poster={theme.destination.hero.poster}
+      fallbackImage={theme.destination.hero.image}
+      imageAlt={theme.destination.hero.imageAlt[locale]}
+      crossfadeMs={theme.destination.hero.crossfadeMs}
+      locale={locale}
+    />
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 sm:pt-28 sm:pb-32">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 sm:pt-28 sm:pb-32">
       <div class="max-w-3xl">
         <p class="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-mezcal">
           {theme.destination.hero.eyebrow[locale]}
@@ -79,6 +97,7 @@ const organizationSchema = {
         <div class="mt-8 flex flex-wrap items-center gap-3.5">
           <a
             href="#experiences"
+            onclick="window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'hero_cta_click',cta:'explore_experiences'});"
             class="inline-flex items-center justify-center rounded-full bg-terracotta hover:bg-terracotta-dark text-white font-semibold text-sm px-7 py-3.5 transition-colors shadow-lg shadow-terracotta/30"
           >
             {copy.ctaExplore} ↓

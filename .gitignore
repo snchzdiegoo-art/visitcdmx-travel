@@ -15,3 +15,7 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 .wrangler/
+
+# Raw unoptimized source videos (only compressed web assets in public/videos/ are committed)
+VIDEO/
+
