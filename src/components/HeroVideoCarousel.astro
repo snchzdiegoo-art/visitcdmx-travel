@@ -31,18 +31,19 @@ const effectivePoster = poster || fallbackImage;
   data-videos={JSON.stringify(videos)}
   data-crossfade-ms={String(crossfadeMs)}
 >
-  <!-- Instant LCP Poster / Static Fallback (always painted first at high priority) -->
+  <!-- Instant LCP Poster / Static Fallback (fades out once video layer 0 is opaque) -->
   <img
+    data-hero-poster
     src={effectivePoster}
     alt={imageAlt}
     fetchpriority="high"
     decoding="async"
-    class="absolute inset-0 w-full h-full object-cover opacity-75"
+    class="absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-700"
   />
 
   {useVideo && (
     <>
-      <!-- Dual Crossfade Video Buffers (Zero black flash between sequential clips) -->
+      <!-- Dual Crossfade Video Buffers (Opaque 100% when active so zero poster bleeds through) -->
       <video
         data-hero-layer="0"
         muted
@@ -50,7 +51,7 @@ const effectivePoster = poster || fallbackImage;
         preload="metadata"
         poster={effectivePoster}
         aria-hidden="true"
-        class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity ease-in-out pointer-events-none"
+        class="absolute inset-0 w-full h-full object-cover opacity-0 z-[1] transition-opacity ease-in-out pointer-events-none"
         style={`transition-duration: ${crossfadeMs}ms;`}
       ></video>
       <video
@@ -59,15 +60,15 @@ const effectivePoster = poster || fallbackImage;
         playsinline
         preload="none"
         aria-hidden="true"
-        class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity ease-in-out pointer-events-none"
+        class="absolute inset-0 w-full h-full object-cover opacity-0 z-[1] transition-opacity ease-in-out pointer-events-none"
         style={`transition-duration: ${crossfadeMs}ms;`}
       ></video>
     </>
   )}
 
   <!-- Adaptive Editorial Scrim for Crisp WCAG Contrast over Bright Footage -->
-  <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/55 to-obsidian/35 pointer-events-none"></div>
-  <div class="absolute inset-0 bg-gradient-to-r from-obsidian/65 via-obsidian/20 to-transparent pointer-events-none"></div>
+  <div class="absolute inset-0 z-[5] bg-gradient-to-t from-obsidian via-obsidian/55 to-obsidian/35 pointer-events-none"></div>
+  <div class="absolute inset-0 z-[5] bg-gradient-to-r from-obsidian/70 via-obsidian/25 to-transparent pointer-events-none"></div>
 
   {useVideo && (
     <div class="absolute bottom-5 right-4 sm:right-6 z-20 flex items-center gap-2.5">
@@ -116,6 +117,7 @@ const effectivePoster = poster || fallbackImage;
       const saveData =
         navigator.connection && navigator.connection.saveData === true;
 
+      const posterImg = root.querySelector('[data-hero-poster]');
       const layerA = root.querySelector('[data-hero-layer="0"]');
       const layerB = root.querySelector('[data-hero-layer="1"]');
       const layers = [layerA, layerB];
@@ -187,14 +189,17 @@ const effectivePoster = poster || fallbackImage;
           incoming.load();
         }
 
+        let faded = false;
         function startFade() {
+          if (faded) return;
+          faded = true;
           incoming.currentTime = 0;
           const p = incoming.play();
           if (p && typeof p.catch === 'function') p.catch(function () {});
-          incoming.classList.remove('opacity-0');
-          incoming.classList.add('opacity-85');
-          outgoing.classList.remove('opacity-85');
-          outgoing.classList.add('opacity-0');
+          incoming.classList.remove('opacity-0', 'z-[1]');
+          incoming.classList.add('opacity-100', 'z-[2]');
+          outgoing.classList.remove('opacity-100', 'z-[2]');
+          outgoing.classList.add('opacity-0', 'z-[1]');
 
           activeLayerIdx = 1 - activeLayerIdx;
           currentClipIdx = nextClipIdx;
@@ -252,8 +257,14 @@ const effectivePoster = poster || fallbackImage;
             const p = layerA.play();
             if (p && typeof p.then === 'function') {
               p.then(function () {
-                layerA.classList.remove('opacity-0');
-                layerA.classList.add('opacity-85');
+                layerA.classList.remove('opacity-0', 'z-[1]');
+                layerA.classList.add('opacity-100', 'z-[2]');
+                if (posterImg) {
+                  setTimeout(function () {
+                    posterImg.classList.remove('opacity-100');
+                    posterImg.classList.add('opacity-0');
+                  }, 1300);
+                }
                 if (!playTracked) {
                   playTracked = true;
                   window.dataLayer = window.dataLayer || [];
@@ -292,8 +303,8 @@ const effectivePoster = poster || fallbackImage;
             if (!active.src) {
               startInitialPlayback();
             } else {
-              active.classList.remove('opacity-0');
-              active.classList.add('opacity-85');
+              active.classList.remove('opacity-0', 'z-[1]');
+              active.classList.add('opacity-100', 'z-[2]');
               active.play().catch(function () {});
             }
           }
