@@ -1,0 +1,175 @@
+{
+  "bokunId": "679836",
+  "internalCode": "SAT_TAXCO_AI",
+  "slug": "taxco-cuernavaca-day-trip",
+  "order": 4,
+  "catalogType": "permanent",
+  "sectionId": "day-trips",
+  "arivalOperatorType": "Tours",
+  "arivalCategory": "Tours > Day Trips",
+  "arivalTags": ["Day Trip", "Pueblo Mágico", "Colonial Architecture", "Silver Artisans", "All-Inclusive"],
+  "neighborhood": "taxco-cuernavaca",
+  "gttdEligible": "yes",
+  "directWebRateBadge": true,
+  "featured": false,
+  "groupType": "small-group",
+  "maxGroupSize": 16,
+  "durationHours": 11,
+  "durationLabel": {
+    "en": "11 hours · Full-Day Escape",
+    "es": "11 horas · Escapada de un Día"
+  },
+  "priceUsd": 118,
+  "otaComparisonUsd": 139,
+  "title": {
+    "en": "Taxco & Cuernavaca All-Inclusive Day Trip",
+    "es": "Excursión Todo Incluido a Taxco y Cuernavaca"
+  },
+  "shortTagline": {
+    "en": "Escape the capital to hillside silver workshops, Baroque churches, and eternal spring.",
+    "es": "Escapa de la capital hacia talleres de plata, arquitectura barroca y la eterna primavera."
+  },
+  "summary": {
+    "en": "Journey south through pine-covered mountains to Cuernavaca's 16th-century cathedral and Taxco de Alarcón, Mexico's gleaming whitewashed silver capital, with traditional lunch and guided visits included.",
+    "es": "Viaja hacia el sur entre montañas hasta la Catedral del siglo XVI en Cuernavaca y Taxco de Alarcón, la capital mundial de la plata, con comida tradicional y recorridos guiados incluidos."
+  },
+  "editorialIntro": {
+    "en": "Clinging to the Sierra Madre slopes, Taxco feels suspended in the 18th century with labyrinthine cobbled lanes and the rose-stone spires of Santa Prisca. Paired with a stop in lush Cuernavaca and a panoramic lunch included, this is the quintessential day escape from Mexico City.",
+    "es": "Enclavado en la sierra, Taxco parece suspendido en el siglo XVIII entre callejones empedrados y la cantera rosa de Santa Prisca. Combinado con Cuernavaca y comida tradicional incluida, es la escapada imperdible desde la CDMX."
+  },
+  "heroImage": "/images/tour-taxco.jpg",
+  "heroImageAlt": {
+    "en": "Whitewashed hillside houses and Santa Prisca church spires in Taxco Pueblo Mágico",
+    "es": "Casas blancas escalonadas y torres de Santa Prisca en el Pueblo Mágico de Taxco"
+  },
+  "gallery": [
+    {
+      "src": "/images/tour-taxco.jpg",
+      "alt": {
+        "en": "Taxco de Alarcón hillside skyline and Santa Prisca church",
+        "es": "Panorámica de Taxco de Alarcón y parroquia de Santa Prisca"
+      }
+    }
+  ],
+  "meetingPoint": {
+    "name": {
+      "en": "Central CDMX Hotel Pick-up or Paseo de la Reforma Hub",
+      "es": "Pick-up en hoteles céntricos o punto de encuentro en Reforma"
+    },
+    "address": "Paseo de la Reforma, Cuauhtémoc, CDMX",
+    "pickupIncluded": true,
+    "mapQuery": "Santa Prisca de Taxco, Guerrero"
+  },
+  "included": {
+    "en": [
+      "Round-trip highway transportation & tolls in air-conditioned touring vehicle",
+      "Traditional Mexican lunch in Taxco (main course + non-alcoholic drink)",
+      "Guided visit to Cuernavaca Cathedral & historic center",
+      "Guided walk of Santa Prisca Church, Plaza Borda & authentic silver workshop"
+    ],
+    "es": [
+      "Transporte redondo por autopista y casetas en vehículo turístico con A/C",
+      "Comida tradicional mexicana en Taxco (plato fuerte y bebida sin alcohol)",
+      "Visita guiada a la Catedral y centro histórico de Cuernavaca",
+      "Recorrido por Santa Prisca, Plaza Borda y taller auténtico de platería"
+    ]
+  },
+  "notIncluded": {
+    "en": [
+      "Alcoholic beverages and personal silver purchases",
+      "Optional gratuities"
+    ],
+    "es": [
+      "Bebidas alcohólicas y compras personales de plata",
+      "Propinas opcionales"
+    ]
+  },
+  "noSurpriseNote": {
+    "en": "Highway tolls, guided visits, and traditional lunch in Taxco are all included in one clear rate.",
+    "es": "Casetas de autopista, visitas guiadas y comida tradicional en Taxco están incluidas en una sola tarifa clara."
+  },
+  "highlights": {
+    "en": [
+      "Truly all-inclusive day escape: transport, tolls, guide, and sit-down lunch",
+      "Visit Mexico's finest Churrigueresque church — Santa Prisca de Taxco",
+      "Free time to explore artisan silver boutiques and panoramic terraces"
+    ],
+    "es": [
+      "Escapada realmente todo incluido: transporte, casetas, guía y comida",
+      "Conoce la joya del barroco churrigueresco en Santa Prisca de Taxco",
+      "Tiempo libre para recorrer talleres artesanales de plata y miradores"
+    ]
+  },
+  "itinerary": [
+    {
+      "time": "07:45",
+      "title": { "en": "Departure from Mexico City", "es": "Salida desde Ciudad de México" },
+      "description": {
+        "en": "Comfortable climb over the Ajusco mountain pass heading south toward Morelos.",
+        "es": "Ascenso panorámico hacia Morelos en vehículo turístico climatizado."
+      }
+    },
+    {
+      "time": "09:30",
+      "title": { "en": "Cuernavaca — City of Eternal Spring", "es": "Cuernavaca — Ciudad de la Eterna Primavera" },
+      "description": {
+        "en": "Explore the 16th-century monastic Cathedral and historic courtyard gardens.",
+        "es": "Visita la Catedral conventual del siglo XVI y sus jardines históricos."
+      }
+    },
+    {
+      "time": "11:45",
+      "title": { "en": "Taxco de Alarcón & Santa Prisca", "es": "Taxco de Alarcón y Santa Prisca" },
+      "description": {
+        "en": "Stroll cobblestone alleys, enter Santa Prisca, visit a heritage silver workshop, and enjoy included lunch.",
+        "es": "Camina por sus callejones empedrados, visita Santa Prisca, un taller tradicional de plata y disfruta la comida incluida."
+      }
+    }
+  ],
+  "faqs": [
+    {
+      "question": {
+        "en": "Is lunch really included in this day trip?",
+        "es": "¿La comida realmente está incluida en esta excursión?"
+      },
+      "answer": {
+        "en": "Yes! A traditional sit-down lunch in Taxco (with vegetarian options available) plus highway tolls are included.",
+        "es": "Sí. Incluye comida tradicional en Taxco (con opciones vegetarianas) y todas las casetas de autopista."
+      }
+    },
+    {
+      "question": {
+        "en": "What footwear should I wear for Taxco?",
+        "es": "¿Qué calzado recomiendan llevar a Taxco?"
+      },
+      "answer": {
+        "en": "Comfortable walking shoes with good grip are ideal for Taxco's picturesque steep cobblestone streets.",
+        "es": "Tenis o calzado cómodo con buena suela para disfrutar sin esfuerzo las calles empedradas de Taxco."
+      }
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Patricia W.",
+      "origin": "San Diego, CA",
+      "rating": 5,
+      "date": "2026-09",
+      "source": "Google Reviews",
+      "quote": {
+        "en": "Taxco looks like a film set in real life. Loved that lunch and everything was handled smoothly and the driving through the mountains was super smooth.",
+        "es": "Taxco parece de película. Nos encantó que la comida y todo estuviera resuelto sin cargos extra y el manejo en carretera fue impecable."
+      }
+    },
+    {
+      "author": "Carlos & Ana V.",
+      "origin": "Madrid, Spain",
+      "rating": 5,
+      "date": "2026-08",
+      "source": "Google Reviews",
+      "quote": {
+        "en": "Un día largo pero aprovechado al máximo. Santa Prisca y las vistas de Taxco merecen cada minuto.",
+        "es": "Un día largo pero aprovechado al máximo. Santa Prisca y las vistas de Taxco merecen cada minuto."
+      }
+    }
+  ]
+}

@@ -1,0 +1,433 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TourCard from './TourCard.astro';
+import theme from '../config/theme.json';
+import { getPlanUrl, getTourUrl, uiCopy, type Locale } from '../lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = uiCopy[locale];
+
+const allTours = (await getCollection('tours')).sort((a, b) => a.data.order - b.data.order);
+const permanentTours = allTours.filter((t) => t.data.catalogType === 'permanent');
+const seasonalTour = allTours.find((t) => t.data.catalogType === 'seasonal');
+const transferTour = allTours.find((t) => t.data.catalogType === 'transfer');
+
+const pageTitle =
+  locale === 'es'
+    ? 'VisitCDMX.travel — Experiencias Curadas y Tours en Ciudad de México | Reserva Directa'
+    : 'VisitCDMX.travel — Curated Mexico City Tours & Experiences | Direct Booking';
+
+const pageDescription =
+  locale === 'es'
+    ? 'Reserva directo tours curados en Ciudad de México con disponibilidad en vivo y tarifas sin sobreprecio de OTAs: Teotihuacán, Xochimilco, Coyoacán, Tacos y Mezcal, y traslados privados por SAT Mexico.'
+    : 'Book curated Mexico City tours directly with real-time availability and zero OTA markups: Teotihuacan, Xochimilco, Anthropology Museum, Coyoacan Food Walk, Night Tacos & Mezcal, operated by SAT Mexico.';
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TravelAgency',
+  name: theme.destination.brandName,
+  url: theme.destination.siteUrl,
+  description: pageDescription,
+  parentOrganization: {
+    '@type': 'Organization',
+    name: theme.operator.legalName,
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: String(theme.operator.googleRating),
+    reviewCount: String(theme.operator.googleReviewCount),
+  },
+  areaServed: {
+    '@type': 'City',
+    name: 'Mexico City',
+  },
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} locale={locale} schemaJson={organizationSchema}>
+  <!-- Magazine Editorial Hero -->
+  <section class="relative overflow-hidden bg-obsidian text-white">
+    <div class="absolute inset-0">
+      <img
+        src={theme.destination.hero.image}
+        alt={theme.destination.hero.imageAlt[locale]}
+        fetchpriority="high"
+        class="w-full h-full object-cover opacity-65"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/55 to-obsidian/30"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 sm:pt-28 sm:pb-32">
+      <div class="max-w-3xl">
+        <p class="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-mezcal">
+          {theme.destination.hero.eyebrow[locale]}
+        </p>
+
+        <h1 class="font-editorial text-4xl sm:text-6xl lg:text-[64px] font-bold tracking-tight leading-[1.06] mt-6">
+          {theme.destination.hero.headline[locale]}
+        </h1>
+
+        <p class="mt-6 text-base sm:text-lg text-ivory/85 max-w-2xl leading-relaxed">
+          {theme.destination.hero.subheadline[locale]}
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-center gap-3.5">
+          <a
+            href="#experiences"
+            class="inline-flex items-center justify-center rounded-full bg-terracotta hover:bg-terracotta-dark text-white font-semibold text-sm px-7 py-3.5 transition-colors shadow-lg shadow-terracotta/30"
+          >
+            {copy.ctaExplore} ↓
+          </a>
+          <a
+            href={getPlanUrl(locale)}
+            class="inline-flex items-center justify-center rounded-full bg-white/12 hover:bg-white/20 backdrop-blur-xs border border-white/25 text-white font-semibold text-sm px-6 py-3.5 transition-colors"
+          >
+            {locale === 'es' ? 'Traslados Privados AICM' : 'Private Airport Transfers'}
+          </a>
+        </div>
+
+        <!-- Stitch Glassmorphic Editorial Proof Bar -->
+        <div class="mt-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-5 sm:p-6 grid grid-cols-2 sm:grid-cols-4 gap-6 text-xs shadow-2xl shadow-obsidian/30">
+          <div class="sm:border-r sm:border-white/15 sm:pr-4">
+            <span class="font-editorial text-2xl sm:text-3xl font-bold text-mezcal block">
+              {theme.operator.googleRating}★
+            </span>
+            <span class="text-ivory/85 mt-0.5 block">
+              {theme.operator.googleReviewCount.toLocaleString('en-US')}+ {locale === 'es' ? 'Reseñas Google' : 'Google Reviews'}
+            </span>
+          </div>
+          <div class="sm:border-r sm:border-white/15 sm:pr-4">
+            <span class="font-editorial text-2xl sm:text-3xl font-bold text-white block">
+              {theme.operator.yearsOperating} {locale === 'es' ? 'Años' : 'Yrs'}
+            </span>
+            <span class="text-ivory/85 mt-0.5 block">
+              {locale === 'es' ? 'Operando SAT Mexico' : 'SAT Mexico Heritage'}
+            </span>
+          </div>
+          <div class="sm:border-r sm:border-white/15 sm:pr-4">
+            <span class="font-editorial text-2xl sm:text-3xl font-bold text-white block">
+              0%
+            </span>
+            <span class="text-ivory/85 mt-0.5 block">
+              {locale === 'es' ? 'Sobreprecio OTA' : 'OTA Markup Fees'}
+            </span>
+          </div>
+          <div>
+            <span class="font-editorial text-2xl sm:text-3xl font-bold text-white block">
+              90s
+            </span>
+            <span class="text-ivory/85 mt-0.5 block">
+              {locale === 'es' ? 'Reserva Directa en Sitio' : 'Instant Direct Booking'}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signature Curated Catalog with Arival Taxonomy Filters -->
+  <section id="experiences" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="max-w-2xl">
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-terracotta">
+          {locale === 'es' ? 'CATÁLOGO CURADO · RESERVA DIRECTA EN VIVO' : 'CURATED COLLECTION · LIVE DIRECT BOOKING'}
+        </p>
+        <h2 class="font-editorial text-3xl sm:text-5xl font-bold text-obsidian mt-2">
+          {locale === 'es' ? 'Experiencias Insignia en CDMX' : 'Signature Mexico City Experiences'}
+        </h2>
+        <p class="text-stone text-sm sm:text-base mt-3 leading-relaxed">
+          {locale === 'es'
+            ? 'Cada experiencia se reserva al instante sin redirecciones externas, con desglose transparente de inclusiones y confirmación directa por WhatsApp.'
+            : 'Every tour is curated, transparent on inclusions, and bookable instantly on VisitCDMX.travel with live Bókun calendars — never redirected to third-party directories.'}
+        </p>
+      </div>
+
+      <!-- Duration Quick Toggle -->
+      <div class="inline-flex items-center gap-1.5 rounded-full bg-white border border-hairline p-1 text-xs font-semibold self-start">
+        <button type="button" data-duration-filter="all" class="px-3.5 py-1.5 rounded-full bg-obsidian text-white cursor-pointer">
+          {locale === 'es' ? 'Cualquier duración' : 'Any duration'}
+        </button>
+        <button type="button" data-duration-filter="half-day" class="px-3.5 py-1.5 rounded-full text-stone hover:text-obsidian cursor-pointer">
+          {locale === 'es' ? 'Medio día (≤5 h)' : 'Half-day (≤5h)'}
+        </button>
+        <button type="button" data-duration-filter="full-day" class="px-3.5 py-1.5 rounded-full text-stone hover:text-obsidian cursor-pointer">
+          {locale === 'es' ? 'Día completo' : 'Full-day'}
+        </button>
+      </div>
+    </div>
+
+    <!-- Arival Taxonomy Filter Pills -->
+    <div class="mt-8 flex items-center gap-2.5 overflow-x-auto no-scrollbar pb-2" role="tablist" aria-label="Experience categories">
+      {theme.arivalSections.map((sec, idx) => (
+        <button
+          type="button"
+          data-section-filter={sec.id}
+          class:list={[
+            'shrink-0 rounded-full px-5 py-2.5 text-xs sm:text-sm font-semibold border transition-colors cursor-pointer',
+            idx === 0
+              ? 'bg-obsidian text-white border-obsidian'
+              : 'bg-white text-charcoal border-hairline hover:border-obsidian',
+          ]}
+        >
+          {sec.label[locale]}
+        </button>
+      ))}
+    </div>
+
+    <!-- 6 Permanent Curated Tours Grid -->
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7" id="tour-grid">
+      {permanentTours.map((entry) => (
+        <TourCard tour={entry.data} locale={locale} />
+      ))}
+    </div>
+
+    <p id="no-filter-results" class="hidden text-center text-stone py-12 text-sm">
+      {locale === 'es'
+        ? 'No hay experiencias con esa combinación de filtros. Haz clic en "Todas" para ver la colección completa.'
+        : 'No experiences match that filter combination. Click "All Experiences" to view the full collection.'}
+    </p>
+  </section>
+
+  <!-- Direct Booking Promise Strip (Solving SAT Mexico Historical Frictions + OTA Savings) -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+    <div class="rounded-3xl bg-white border border-hairline p-8 sm:p-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="space-y-2.5">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-terracotta/12 text-terracotta font-bold text-sm">01</span>
+        <h3 class="font-editorial text-xl font-bold text-obsidian">
+          {locale === 'es' ? 'Tarifas Directas de Operador' : 'Direct Operator Web Rates'}
+        </h3>
+        <p class="text-sm text-stone leading-relaxed">
+          {locale === 'es'
+            ? 'Al reservar directo en VisitCDMX.travel evitas comisiones de 20%–30% de OTAs externas y disfrutas precios transparentes en USD o MXN (con MSI/OXXO/SPEI en MXN).'
+            : 'Booking directly on VisitCDMX.travel eliminates 20–30% OTA middleman markups, unlocking exclusive web rates like our Night Tacos & Mezcal Tour.'}
+        </p>
+      </div>
+      <div class="space-y-2.5">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-cobalt/12 text-cobalt font-bold text-sm">02</span>
+        <h3 class="font-editorial text-xl font-bold text-obsidian">
+          {locale === 'es' ? 'Cero Cargos Sorpresa en Taquilla' : 'Zero Surprise Gate Fees'}
+        </h3>
+        <p class="text-sm text-stone leading-relaxed">
+          {locale === 'es'
+            ? 'Cada ficha muestra arriba del pliegue exactamente qué boletos, degustaciones o comidas vienen incluidos vs. qué es opcional.'
+            : 'Every experience page lists exact included tickets, tastings, and group sizes right above the fold — total clarity before you click book.'}
+        </p>
+      </div>
+      <div class="space-y-2.5">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-mezcal/20 text-obsidian font-bold text-sm">03</span>
+        <h3 class="font-editorial text-xl font-bold text-obsidian">
+          {locale === 'es' ? 'Pick-up Confirmado por WhatsApp' : 'Instant E-Ticket + WhatsApp Dispatch'}
+        </h3>
+        <p class="text-sm text-stone leading-relaxed">
+          {locale === 'es'
+            ? 'Confirmación inmediata con Bókun más horario exacto de pick-up y soporte humano local de SAT Mexico 24 horas antes de tu salida.'
+            : 'Immediate Bókun confirmation plus exact pick-up timing, meeting point map, and live local WhatsApp support 24 hours before departure.'}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Neighborhoods Editorial Magazine Section (Inspired by Visita Los Cabos Zones) -->
+  <section id="neighborhoods" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
+    <div class="max-w-2xl">
+      <p class="text-xs font-bold uppercase tracking-[0.2em] text-cobalt">
+        {locale === 'es' ? 'EXPLORA POR ZONA Y BARRIO' : 'EXPLORE BY NEIGHBORHOOD & VALLEY'}
+      </p>
+      <h2 class="font-editorial text-3xl sm:text-5xl font-bold text-obsidian mt-2">
+        {locale === 'es' ? 'Seis Rostros de la Ciudad de México' : 'Six Worlds Inside Mexico City'}
+      </h2>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6">
+      {theme.neighborhoods.map((hood, idx) => (
+        <button
+          type="button"
+          data-hood-jump={hood.filterSection}
+          class:list={[
+            'group relative rounded-2xl overflow-hidden text-left cursor-pointer bg-obsidian shadow-sm',
+            idx < 2 ? 'lg:col-span-6 aspect-[16/10]' : 'lg:col-span-3 aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/5]',
+          ]}
+        >
+          <img
+            src={hood.image}
+            alt={hood.name[locale]}
+            loading="lazy"
+            decoding="async"
+            class="w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-90 transition-all duration-500"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-obsidian/85 via-obsidian/25 to-transparent"></div>
+          <div class="absolute bottom-5 left-5 right-5">
+            <span class="text-[10px] uppercase tracking-[0.2em] text-mezcal font-semibold block mb-1">
+              {locale === 'es' ? 'Explorar Zona →' : 'Explore District →'}
+            </span>
+            <h3 class="font-editorial text-2xl font-bold text-white leading-tight">{hood.name[locale]}</h3>
+            <p class="text-xs text-ivory/80 mt-1">{hood.subtitle[locale]}</p>
+          </div>
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <!-- Seasonal & Cultural Festivals Module (Mixquic #154326) -->
+  {seasonalTour && (
+    <section id="seasonal" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
+      <div class="rounded-3xl overflow-hidden bg-obsidian text-white grid grid-cols-1 lg:grid-cols-12 border border-obsidian">
+        <div class="lg:col-span-6 relative min-h-[300px]">
+          <img
+            src={seasonalTour.data.heroImage}
+            alt={seasonalTour.data.heroImageAlt[locale]}
+            loading="lazy"
+            decoding="async"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="lg:col-span-6 p-8 sm:p-12 flex flex-col justify-center space-y-5">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="rounded-full bg-mezcal text-obsidian text-[11px] font-bold uppercase tracking-wider px-3.5 py-1">
+              {locale === 'es' ? 'Festividades de Temporada' : 'Seasonal & Cultural Festivals'}
+            </span>
+            <span class="text-xs text-ivory/75">
+              {seasonalTour.data.seasonalWindow?.[locale]}
+            </span>
+          </div>
+          <h2 class="font-editorial text-3xl sm:text-4xl font-bold leading-tight">
+            {seasonalTour.data.title[locale]}
+          </h2>
+          <p class="text-sm sm:text-base text-ivory/80 leading-relaxed">
+            {seasonalTour.data.summary[locale]}
+          </p>
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a
+              href={getTourUrl(seasonalTour.data.slug, locale)}
+              class="inline-flex items-center justify-center rounded-full bg-terracotta hover:bg-terracotta-dark text-white font-semibold text-sm px-6 py-3 transition-colors"
+            >
+              {locale === 'es' ? 'Ver Fechas / Lista Prioritaria →' : 'View Dates / Join Priority Waitlist →'}
+            </a>
+            <span class="text-sm font-semibold text-mezcal" data-price-usd={seasonalTour.data.priceUsd}>
+              ${seasonalTour.data.priceUsd} USD
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Plan Your Trip > Private Transportation Module (#630159) -->
+  {transferTour && (
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+      <div class="rounded-3xl bg-sand/75 border border-hairline p-8 sm:p-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 space-y-4">
+          <p class="text-xs font-bold uppercase tracking-[0.2em] text-cobalt">
+            {locale === 'es' ? 'PLANEA TU VIAJE · TRASLADOS PRIVADOS' : 'PLAN YOUR TRIP · PRIVATE TRANSFERS'}
+          </p>
+          <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-obsidian">
+            {transferTour.data.title[locale]}
+          </h2>
+          <p class="text-sm sm:text-base text-charcoal/85 leading-relaxed">
+            {transferTour.data.summary[locale]}
+          </p>
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a
+              href={getTourUrl(transferTour.data.slug, locale)}
+              class="inline-flex items-center justify-center rounded-full bg-obsidian hover:bg-terracotta text-white font-semibold text-sm px-6 py-3 transition-colors"
+            >
+              {locale === 'es' ? 'Reservar Traslado Privado' : 'Book Private Transfer'}
+            </a>
+            <a
+              href={getPlanUrl(locale)}
+              class="inline-flex items-center text-sm font-semibold text-cobalt hover:underline"
+            >
+              {locale === 'es' ? 'Guía de Aeropuertos y Llegada →' : 'Airport & Arrival Planning Guide →'}
+            </a>
+          </div>
+        </div>
+        <div class="lg:col-span-5">
+          <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
+            <img
+              src={transferTour.data.heroImage}
+              alt={transferTour.data.heroImageAlt[locale]}
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Lightweight Arival & Duration Filter Script (~1.2 KB) -->
+  <script is:inline>
+    (function () {
+      let activeSection = 'all';
+      let activeDuration = 'all';
+
+      const cards = Array.from(document.querySelectorAll('[data-tour-card]'));
+      const sectionBtns = Array.from(document.querySelectorAll('[data-section-filter]'));
+      const durationBtns = Array.from(document.querySelectorAll('[data-duration-filter]'));
+      const hoodBtns = Array.from(document.querySelectorAll('[data-hood-jump]'));
+      const emptyMsg = document.getElementById('no-filter-results');
+
+      function applyFilters() {
+        let visibleCount = 0;
+        cards.forEach(function (card) {
+          const sec = card.getAttribute('data-section');
+          const dur = card.getAttribute('data-duration');
+          const matchSec = activeSection === 'all' || sec === activeSection;
+          const matchDur = activeDuration === 'all' || dur === activeDuration;
+          const show = matchSec && matchDur;
+          card.classList.toggle('hidden', !show);
+          if (show) visibleCount += 1;
+        });
+
+        if (emptyMsg) emptyMsg.classList.toggle('hidden', visibleCount > 0);
+
+        sectionBtns.forEach(function (btn) {
+          const isMatch = btn.getAttribute('data-section-filter') === activeSection;
+          btn.classList.toggle('bg-obsidian', isMatch);
+          btn.classList.toggle('text-white', isMatch);
+          btn.classList.toggle('border-obsidian', isMatch);
+          btn.classList.toggle('bg-white', !isMatch);
+          btn.classList.toggle('text-charcoal', !isMatch);
+          btn.classList.toggle('border-hairline', !isMatch);
+        });
+
+        durationBtns.forEach(function (btn) {
+          const isMatch = btn.getAttribute('data-duration-filter') === activeDuration;
+          btn.classList.toggle('bg-obsidian', isMatch);
+          btn.classList.toggle('text-white', isMatch);
+          btn.classList.toggle('text-stone', !isMatch);
+        });
+      }
+
+      sectionBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          activeSection = btn.getAttribute('data-section-filter') || 'all';
+          applyFilters();
+        });
+      });
+
+      durationBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          activeDuration = btn.getAttribute('data-duration-filter') || 'all';
+          applyFilters();
+        });
+      });
+
+      hoodBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          activeSection = btn.getAttribute('data-hood-jump') || 'all';
+          activeDuration = 'all';
+          applyFilters();
+          const target = document.getElementById('experiences');
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+    })();
+  </script>
+</BaseLayout>

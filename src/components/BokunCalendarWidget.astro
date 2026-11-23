@@ -1,0 +1,350 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import theme from '../config/theme.json';
+import { getBokunChannelUuid, getWhatsappUrl, uiCopy, type Locale } from '../lib/i18n';
+
+interface Props {
+  tour: CollectionEntry<'tours'>['data'];
+  locale: Locale;
+}
+
+const { tour, locale } = Astro.props;
+const copy = uiCopy[locale];
+const bokunUuid = getBokunChannelUuid();
+const hasLiveBokun = bokunUuid.length > 0;
+const whatsappUrl = getWhatsappUrl(locale, tour.title[locale]);
+const isSeasonal = tour.catalogType === 'seasonal';
+const isTransfer = tour.catalogType === 'transfer';
+
+// Official Bókun Calendar Widget embed endpoint when live channel UUID is set
+const liveCalendarSrc = hasLiveBokun
+  ? `https://widgets.bokun.io/online-sales/${bokunUuid}/experience-calendar/${tour.bokunId}?partialView=1`
+  : '';
+---
+
+<aside id="booking-calendar" class="space-y-5">
+  <div class="bg-white rounded-3xl border border-hairline shadow-xl shadow-obsidian/5 overflow-hidden">
+    <!-- Top Price & Direct Rate Header -->
+    <div class="bg-obsidian text-ivory p-6">
+      <div class="flex items-center justify-between gap-2">
+        <span class="inline-flex items-center gap-1.5 rounded-full bg-terracotta/90 text-white text-[11px] font-semibold px-3 py-1">
+          {copy.directRate}
+        </span>
+        <span class="text-xs text-ivory/75">
+          Bókun ID #{tour.bokunId}
+        </span>
+      </div>
+
+      <div class="mt-4 flex items-baseline justify-between gap-3">
+        <div>
+          <span class="text-xs text-ivory/65 block">{copy.from}</span>
+          <div class="flex items-baseline gap-2.5">
+            <span class="text-3xl font-bold text-white" data-price-usd={tour.priceUsd}>
+              ${tour.priceUsd} USD
+            </span>
+            {tour.otaComparisonUsd && (
+              <span class="text-sm text-ivory/50 line-through" data-price-usd={tour.otaComparisonUsd}>
+                ${tour.otaComparisonUsd} USD
+              </span>
+            )}
+          </div>
+          <span class="text-xs text-ivory/70">
+            {isTransfer ? copy.perVehicle : copy.perPerson}
+          </span>
+          {tour.otaComparisonUsd && tour.otaComparisonUsd > tour.priceUsd && (
+            <span class="mt-1.5 inline-flex items-center gap-1 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-[11px] font-semibold px-2.5 py-0.5">
+              {locale === 'es' ? 'Ahorra' : 'Save'}{' '}
+              <span data-price-usd={tour.otaComparisonUsd - tour.priceUsd}>
+                ${tour.otaComparisonUsd - tour.priceUsd} USD
+              </span>{' '}
+              {locale === 'es' ? 'vs. OTAs' : 'vs. OTAs'}
+            </span>
+          )}
+        </div>
+
+        <div class="text-right">
+          <span class="text-mezcal font-bold text-sm">★ {theme.operator.googleRating}</span>
+          <span class="block text-[11px] text-ivory/70">
+            {theme.operator.googleReviewCount.toLocaleString('en-US')}+ Google
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Bókun Calendar Widget OR Interactive Prototype Calendar -->
+    <div class="p-6">
+      {hasLiveBokun ? (
+        <div class="space-y-3">
+          <div
+            class="bokunWidget min-h-[420px]"
+            data-src={liveCalendarSrc}
+          ></div>
+          <noscript>
+            <p class="text-xs text-stone">
+              {locale === 'es'
+                ? 'Activa JavaScript para cargar el calendario en vivo de Bókun.'
+                : 'Please enable JavaScript to load the live Bókun booking calendar.'}
+            </p>
+          </noscript>
+        </div>
+      ) : isSeasonal ? (
+        <div class="space-y-4">
+          <div class="rounded-2xl bg-amber-50 border border-amber-200 p-4">
+            <p class="text-xs font-bold uppercase tracking-wider text-amber-900">
+              {tour.seasonalWindow?.[locale]}
+            </p>
+            <p class="text-xs text-amber-900/80 mt-1 leading-relaxed">
+              {locale === 'es'
+                ? 'Esta celebración ocurre únicamente del 31 de octubre al 2 de noviembre. Reserva fechas abiertas o únete a la Lista de Espera Prioritaria.'
+                : 'La Alumbrada takes place exclusively Oct 31 – Nov 2. Reserve open seasonal departures or join our Priority Waitlist for early-bird release.'}
+            </p>
+          </div>
+
+          <form id="seasonal-waitlist-form" class="space-y-3">
+            <div>
+              <label class="block text-xs font-semibold text-charcoal mb-1">
+                {locale === 'es' ? 'Temporada deseada' : 'Preferred Season'}
+              </label>
+              <select class="w-full rounded-xl border border-hairline bg-ivory px-3.5 py-2.5 text-sm text-obsidian focus:outline-none focus:border-terracotta">
+                <option value="2027-11-01">Nov 1, 2027 — La Alumbrada (Priority)</option>
+                <option value="2027-11-02">Nov 2, 2027 — Día de Muertos Evening</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-charcoal mb-1">
+                {locale === 'es' ? 'Correo electrónico' : 'Email Address'}
+              </label>
+              <input
+                type="email"
+                required
+                placeholder="traveler@example.com"
+                class="w-full rounded-xl border border-hairline bg-ivory px-3.5 py-2.5 text-sm text-obsidian focus:outline-none focus:border-terracotta"
+              />
+            </div>
+            <button
+              type="submit"
+              class="w-full rounded-full bg-terracotta hover:bg-terracotta-dark text-white font-semibold text-sm py-3.5 px-5 transition-colors cursor-pointer"
+            >
+              {locale === 'es' ? 'Unirme a la Lista Prioritaria' : 'Join Priority Waitlist'}
+            </button>
+            <p id="waitlist-confirm" class="hidden text-xs text-emerald-700 font-medium bg-emerald-50 border border-emerald-200 rounded-xl p-3">
+              {locale === 'es'
+                ? '¡Listo! Recibirás acceso anticipado con tarifa directa antes de que se abran lugares en OTAs.'
+                : 'You are on the Priority Waitlist! You will receive early direct-rate access before seats release on OTAs.'}
+            </p>
+          </form>
+        </div>
+      ) : (
+        <div class="space-y-4" data-demo-calendar data-unit-price={tour.priceUsd}>
+          <div class="flex items-center justify-between text-xs bg-sand/75 rounded-xl px-3.5 py-2.5 border border-hairline">
+            <span class="font-semibold text-charcoal">
+              {locale === 'es' ? 'Calendario Interactivo (Demo Día 0)' : 'Live Calendar Preview (Day 0 Demo)'}
+            </span>
+            <span class="text-[11px] text-cobalt font-medium">Bókun + Stripe MX</span>
+          </div>
+
+          <div>
+            <label for="demo-date" class="block text-xs font-semibold text-charcoal mb-1.5">
+              {locale === 'es' ? '1. Elige tu fecha' : '1. Select your date'}
+            </label>
+            <input
+              id="demo-date"
+              type="date"
+              class="w-full rounded-xl border border-hairline bg-ivory px-3.5 py-2.5 text-sm font-medium text-obsidian focus:outline-none focus:border-terracotta"
+            />
+          </div>
+
+          <div class="flex items-center justify-between rounded-xl border border-hairline bg-ivory px-4 py-3">
+            <div>
+              <span class="text-xs font-semibold text-obsidian block">
+                {isTransfer
+                  ? locale === 'es' ? 'Vehículos Privados' : 'Private Vehicles'
+                  : locale === 'es' ? 'Viajeros' : 'Travelers'}
+              </span>
+              <span class="text-[11px] text-stone">
+                {locale === 'es' ? `Máx. ${tour.maxGroupSize} por salida` : `Max ${tour.maxGroupSize} per departure`}
+              </span>
+            </div>
+            <div class="inline-flex items-center gap-3">
+              <button
+                type="button"
+                data-qty-minus
+                class="w-8 h-8 rounded-full border border-hairline bg-white hover:bg-sand text-obsidian font-bold cursor-pointer"
+                aria-label="Decrease"
+              >
+                −
+              </button>
+              <span data-qty-value class="w-5 text-center font-bold text-sm">2</span>
+              <button
+                type="button"
+                data-qty-plus
+                class="w-8 h-8 rounded-full border border-hairline bg-white hover:bg-sand text-obsidian font-bold cursor-pointer"
+                aria-label="Increase"
+              >
+                +
+              </button>
+            </div>
+          </div>
+
+          <!-- Instant Total Breakdown -->
+          <div class="rounded-2xl bg-sand/55 border border-hairline p-4 space-y-1.5">
+            <div class="flex items-center justify-between text-xs text-stone">
+              <span data-calc-summary>2 × ${tour.priceUsd} USD</span>
+              <span>{locale === 'es' ? 'Impuestos incluidos' : 'All taxes included'}</span>
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-hairline/70">
+              <span class="text-sm font-semibold text-obsidian">
+                {locale === 'es' ? 'Total Exacto' : 'Exact Total'}
+              </span>
+              <span data-calc-total class="text-xl font-bold text-obsidian">
+                ${tour.priceUsd * 2} USD
+              </span>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            data-demo-checkout-btn
+            class="w-full rounded-full bg-terracotta hover:bg-terracotta-dark text-white font-semibold text-sm py-3.5 px-5 transition-colors shadow-md shadow-terracotta/25 cursor-pointer"
+          >
+            {copy.ctaBook}
+          </button>
+
+          <div
+            data-demo-checkout-msg
+            class="hidden rounded-2xl bg-emerald-50 border border-emerald-200 p-4 text-xs text-emerald-950 space-y-2"
+          >
+            <p class="font-bold">
+              {locale === 'es'
+                ? '✓ Flujo listo para cobro real con Bókun + Stripe México'
+                : '✓ Ready for Live Bókun + Stripe Mexico Checkout'}
+            </p>
+            <p class="leading-relaxed">
+              {locale === 'es'
+                ? `En cuanto pegues el Booking Channel UUID de VisitCDMX.travel en .env, este botón abrirá el checkout en vivo del producto #${tour.bokunId} sin salir de visitcdmx.travel.`
+                : `Once your VisitCDMX.travel Booking Channel UUID is set in .env, this panel automatically loads live Bókun calendar & Stripe checkout for product #${tour.bokunId}.`}
+            </p>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 font-semibold text-emerald-800 underline"
+            >
+              {locale === 'es' ? 'O reserva ahora por WhatsApp Directo →' : 'Or reserve immediately via Direct WhatsApp →'}
+            </a>
+          </div>
+        </div>
+      )}
+
+      <!-- Dynamic Payment Method Hint (USD vs MXN MSI/OXXO/SPEI) -->
+      <div class="mt-4 pt-4 border-t border-hairline space-y-2.5 text-xs text-stone">
+        <p
+          data-payment-hint
+          data-hint-mxn={copy.mxnPaymentsNote}
+          data-hint-usd={copy.usdPaymentsNote}
+          class="leading-relaxed"
+        >
+          {locale === 'es' ? copy.mxnPaymentsNote : copy.usdPaymentsNote}
+        </p>
+        <p class="flex items-start gap-2 text-charcoal font-medium">
+          <svg class="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          <span>{copy.instantConfirmation}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 Five-Star Traveler Reviews Directly Beside Booking CTA (CausalFunnel +1.4 pp CR Benchmark) -->
+  <div class="bg-white rounded-3xl border border-hairline p-5 space-y-4">
+    <div class="flex items-center justify-between">
+      <p class="text-xs font-bold uppercase tracking-[0.15em] text-obsidian">
+        {locale === 'es' ? 'Lo que dicen nuestros viajeros' : 'Verified Traveler Voices'}
+      </p>
+      <span class="text-xs font-semibold text-mezcal">★★★★★ 4.8/5</span>
+    </div>
+    <div class="space-y-3.5">
+      {tour.reviews.slice(0, 2).map((rev) => (
+        <blockquote class="rounded-2xl bg-ivory/80 border border-hairline/80 p-3.5 text-xs leading-relaxed text-charcoal">
+          <p class="italic">"{rev.quote[locale]}"</p>
+          <footer class="mt-2 flex items-center justify-between text-[11px] text-stone not-italic">
+            <span class="font-semibold text-obsidian">{rev.author} · {rev.origin}</span>
+            <span>{rev.source}</span>
+          </footer>
+        </blockquote>
+      ))}
+    </div>
+  </div>
+</aside>
+
+<script is:inline>
+  (function () {
+    const widget = document.querySelector('[data-demo-calendar]');
+    if (widget) {
+      const unitUsd = parseFloat(widget.getAttribute('data-unit-price') || '0');
+      const dateInput = widget.querySelector('#demo-date');
+      const qtyEl = widget.querySelector('[data-qty-value]');
+      const summaryEl = widget.querySelector('[data-calc-summary]');
+      const totalEl = widget.querySelector('[data-calc-total]');
+      const minusBtn = widget.querySelector('[data-qty-minus]');
+      const plusBtn = widget.querySelector('[data-qty-plus]');
+      const checkoutBtn = widget.querySelector('[data-demo-checkout-btn]');
+      const checkoutMsg = widget.querySelector('[data-demo-checkout-msg]');
+
+      // Default date = tomorrow
+      if (dateInput) {
+        const tomorrow = new Date(Date.now() + 86400000);
+        const iso = tomorrow.toISOString().split('T')[0];
+        dateInput.min = iso;
+        dateInput.value = iso;
+      }
+
+      let qty = 2;
+
+      function renderTotal() {
+        const curr = document.documentElement.getAttribute('data-currency') || 'USD';
+        const rate = parseFloat(document.documentElement.getAttribute('data-exchange-rate') || '19.08');
+        const unit = curr === 'MXN' ? Math.round(unitUsd * rate) : Math.round(unitUsd);
+        const total = unit * qty;
+        if (qtyEl) qtyEl.textContent = String(qty);
+        if (summaryEl) summaryEl.textContent = qty + ' × $' + unit.toLocaleString('en-US') + ' ' + curr;
+        if (totalEl) totalEl.textContent = '$' + total.toLocaleString('en-US') + ' ' + curr;
+      }
+
+      if (minusBtn) {
+        minusBtn.addEventListener('click', function () {
+          if (qty > 1) {
+            qty -= 1;
+            renderTotal();
+          }
+        });
+      }
+      if (plusBtn) {
+        plusBtn.addEventListener('click', function () {
+          if (qty < 12) {
+            qty += 1;
+            renderTotal();
+          }
+        });
+      }
+      if (checkoutBtn && checkoutMsg) {
+        checkoutBtn.addEventListener('click', function () {
+          checkoutMsg.classList.remove('hidden');
+        });
+      }
+
+      window.addEventListener('visitcdmx:currency-change', renderTotal);
+      renderTotal();
+    }
+
+    const waitlistForm = document.getElementById('seasonal-waitlist-form');
+    const waitlistConfirm = document.getElementById('waitlist-confirm');
+    if (waitlistForm && waitlistConfirm) {
+      waitlistForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        waitlistConfirm.classList.remove('hidden');
+      });
+    }
+  })();
+</script>

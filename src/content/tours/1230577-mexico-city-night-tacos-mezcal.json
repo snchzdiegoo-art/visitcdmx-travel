@@ -1,0 +1,175 @@
+{
+  "bokunId": "1230577",
+  "internalCode": "For Website Use Only",
+  "slug": "mexico-city-night-tacos-mezcal",
+  "order": 6,
+  "catalogType": "permanent",
+  "sectionId": "food-mezcal",
+  "arivalOperatorType": "Tours",
+  "arivalCategory": "Tours > Food & Drink",
+  "arivalTags": ["Night Tour", "Tacos", "Mezcal Tasting", "Direct Web Rate", "Small Group"],
+  "neighborhood": "roma-condesa",
+  "gttdEligible": "yes",
+  "directWebRateBadge": true,
+  "featured": true,
+  "groupType": "small-group",
+  "maxGroupSize": 12,
+  "durationHours": 4,
+  "durationLabel": {
+    "en": "4 hours · Evening Food & Mezcal",
+    "es": "4 horas · Ruta Nocturna de Tacos y Mezcal"
+  },
+  "priceUsd": 95,
+  "otaComparisonUsd": 119,
+  "title": {
+    "en": "Mexico City Night Tacos & Mezcal Tour",
+    "es": "Tour Nocturno de Tacos y Mezcal en CDMX"
+  },
+  "shortTagline": {
+    "en": "Exclusive direct web rate: late-night trompos al pastor, ancestral mezcal, and local cantinas.",
+    "es": "Tarifa directa exclusiva web: trompos al pastor, mezcal artesanal y cantinas locales."
+  },
+  "summary": {
+    "en": "Dive into Mexico City's electric evening food scene across four beloved neighborhood taquerías and an artisanal mezcalería — booked directly at our special web-only rate with all tacos, drinks, and mezcal flights included.",
+    "es": "Sumérgete en la vibrante escena nocturna de la CDMX visitando cuatro taquerías emblemáticas y una mezcalería artesanal — reservando directo con nuestra tarifa especial exclusiva web, con todos los tacos y mezcales incluidos."
+  },
+  "editorialIntro": {
+    "en": "After sunset, Mexico City transforms into the taco capital of the planet. Our direct-booking evening crawl skips tourist traps to bring you sizzling al pastor shaved straight from the trompo, charcoal-grilled suadero, and small-batch Oaxacan mezcal paired with orange and sal de gusano.",
+    "es": "Al caer la noche, la Ciudad de México se convierte en la capital mundial del taco. Esta ruta nocturna con tarifa directa web te lleva a taquerías de culto para probar pastor recién bajado del trompo, suadero al carbón y mezcales artesanales de Oaxaca."
+  },
+  "heroImage": "/images/tour-tacos-mezcal.jpg",
+  "heroImageAlt": {
+    "en": "Artisanal tacos al pastor and clay copitas of Oaxacan mezcal in warm evening ambiance in Mexico City",
+    "es": "Tacos al pastor recién preparados y copitas de barro con mezcal artesanal en ambiente nocturno de CDMX"
+  },
+  "gallery": [
+    {
+      "src": "/images/tour-tacos-mezcal.jpg",
+      "alt": {
+        "en": "Night tacos al pastor and mezcal tasting in Mexico City",
+        "es": "Tacos al pastor nocturnos y cata de mezcal en Ciudad de México"
+      }
+    }
+  ],
+  "meetingPoint": {
+    "name": {
+      "en": "Plaza Río de Janeiro, Roma Norte",
+      "es": "Plaza Río de Janeiro, Roma Norte"
+    },
+    "address": "Plaza Río de Janeiro, Roma Norte, 06700 Ciudad de México",
+    "pickupIncluded": false,
+    "mapQuery": "Plaza Rio de Janeiro, Roma Norte, Mexico City"
+  },
+  "included": {
+    "en": [
+      "Direct Web Exclusive Rate (save vs. third-party OTAs)",
+      "Tacos across 4 hand-picked local taquerías (al pastor, suadero, birria & regional)",
+      "Guided artisanal mezcal tasting flight (3 agave varietals) + craft beer or agua fresca",
+      "Local bilingual food & nightlife host"
+    ],
+    "es": [
+      "Tarifa Directa Exclusiva Web (ahorra frente a OTAs externas)",
+      "Degustación en 4 taquerías locales seleccionadas (pastor, suadero, birria y regional)",
+      "Cata guiada de mezcal artesanal (3 agaves distintos) + cerveza artesanal o agua fresca",
+      "Anfitrión local bilingüe especialista en gastronomía nocturna"
+    ]
+  },
+  "notIncluded": {
+    "en": [
+      "Extra drinks beyond the included flight and pairings",
+      "Hotel transport (starts & ends in central walkable Roma / Condesa)"
+    ],
+    "es": [
+      "Bebidas adicionales fuera de la cata y maridajes incluidos",
+      "Transporte de hotel (inicia y termina en zona caminable de Roma / Condesa)"
+    ]
+  },
+  "noSurpriseNote": {
+    "en": "This direct-only listing (#1230577) offers our lowest operator web rate with all 4 taco stops and the 3-mezcal tasting flight 100% paid.",
+    "es": "Este listado directo web (#1230577) te garantiza nuestra mejor tarifa de operador con las 4 paradas de tacos y la cata de 3 mezcales 100% pagadas."
+  },
+  "highlights": {
+    "en": [
+      "Best Direct Rate Guarantee — save up to $24 USD/person vs. OTA markups",
+      "Shared live inventory sync ensures instant confirmation with zero overbooking",
+      "Small social group of max 12 travelers — great for couples, friends & solo guests"
+    ],
+    "es": [
+      "Tarifa Directa Web Garantizada — ahorra frente a comisiones de plataformas externas",
+      "Disponibilidad sincronizada en tiempo real con confirmación inmediata",
+      "Grupo social de máximo 12 personas, ideal para parejas, amigos o viajeros solos"
+    ]
+  },
+  "itinerary": [
+    {
+      "time": "18:30",
+      "title": { "en": "Roma Norte Kickoff & First Trompo", "es": "Inicio en Roma Norte y Primer Trompo" },
+      "description": {
+        "en": "Meet at Plaza Río de Janeiro and taste sizzling al pastor with pineapple and house salsas.",
+        "es": "Encuentro en Plaza Río de Janeiro para probar tacos al pastor recién cortados del trompo."
+      }
+    },
+    {
+      "time": "19:45",
+      "title": { "en": "Classic Neighborhood Taquerías", "es": "Taquerías Clásicas de Barrio" },
+      "description": {
+        "en": "Compare regional taco styles — slow-braised suadero, crispy volcanes, and heirloom tortillas.",
+        "es": "Compara estilos icónicos: suadero, volcanes crujientes y tortillas de maíz nixtamalizado."
+      }
+    },
+    {
+      "time": "21:15",
+      "title": { "en": "Artisanal Mezcalería Tasting Flight", "es": "Cata en Mezcalería Artesanal" },
+      "description": {
+        "en": "Sip 3 wild and cultivated artisanal mezcals with an expert breakdown of terroir, roasting, and agave craft.",
+        "es": "Degusta 3 mezcales artesanales aprendiendo sobre agaves, hornos cónicos y regiones productoras."
+      }
+    }
+  ],
+  "faqs": [
+    {
+      "question": {
+        "en": "Why is the price lower here than on Viator or GetYourGuide?",
+        "es": "¿Por qué el precio aquí es más bajo que en Viator o GetYourGuide?"
+      },
+      "answer": {
+        "en": "When you book directly on VisitCDMX.travel, we pass the 20–30% OTA commission savings straight to you with the exact same guides and tastings.",
+        "es": "Al reservar directo en VisitCDMX.travel eliminamos comisiones de intermediarios y te trasladamos ese ahorro con exactamente los mismos guías y degustaciones."
+      }
+    },
+    {
+      "question": {
+        "en": "Is there a non-alcoholic option instead of mezcal?",
+        "es": "¿Hay alternativa sin alcohol en lugar de mezcal?"
+      },
+      "answer": {
+        "en": "Absolutely — we offer artisan aguas frescas, craft mocktails, or Mexican sodas at every stop.",
+        "es": "Por supuesto, ofrecemos aguas frescas artesanales o bebidas sin alcohol en cada parada."
+      }
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Tyler & Megan S.",
+      "origin": "Denver, CO",
+      "rating": 5,
+      "date": "2026-10",
+      "source": "Google Reviews",
+      "quote": {
+        "en": "Best night we had in CDMX! Booking direct saved us nearly $50 as a couple and every single taco stop was packed with locals, not tourists.",
+        "es": "¡La mejor noche en CDMX! Reservar directo nos ahorró casi $50 USD en pareja y cada taquería estaba llena de locales."
+      }
+    },
+    {
+      "author": "Priya N.",
+      "origin": "Boston, MA",
+      "rating": 5,
+      "date": "2026-10",
+      "source": "Google Reviews",
+      "quote": {
+        "en": "I joined solo and made instant friends. Learned more about real mezcal in one hour than in years of ordering cocktails.",
+        "es": "Fui sola y terminé haciendo amigos increíbles. Aprendí más sobre mezcal artesanal en una hora que en años."
+      }
+    }
+  ]
+}

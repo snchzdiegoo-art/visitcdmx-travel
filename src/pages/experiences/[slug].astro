@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+import TourDetailPage from '../../components/TourDetailPage.astro';
+
+export async function getStaticPaths() {
+  const tours = await getCollection('tours');
+  return tours.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { tour: entry.data },
+  }));
+}
+
+const { tour } = Astro.props;
+---
+
+<TourDetailPage tour={tour} locale="en" />

@@ -1,0 +1,142 @@
+{
+  "destination": {
+    "id": "cdmx",
+    "domain": "visitcdmx.travel",
+    "siteUrl": "https://visitcdmx.travel",
+    "brandName": "VisitCDMX.travel",
+    "brandMark": "V·CDMX",
+    "socialHandle": "@visitcdmx.travel",
+    "defaultLocale": "en",
+    "supportedLocales": ["en", "es"],
+    "defaultCurrency": "USD",
+    "supportedCurrencies": ["USD", "MXN"],
+    "exchangeRateMxnPerUsd": 19.08,
+    "city": {
+      "en": "Mexico City",
+      "es": "Ciudad de México"
+    },
+    "tagline": {
+      "en": "Curated Mexico City Experiences. Instant Direct Booking.",
+      "es": "Experiencias Curadas en Ciudad de México. Reserva Directa al Instante."
+    },
+    "hero": {
+      "eyebrow": {
+        "en": "THE CURATED MEXICO CITY GUIDE · DIRECT OPERATOR RATES",
+        "es": "GUÍA CURADA DE CIUDAD DE MÉXICO · TARIFAS DIRECTAS DE OPERADOR"
+      },
+      "headline": {
+        "en": "Experience Mexico City Beyond the Guidebook.",
+        "es": "Vive la Ciudad de México Más Allá de la Guía."
+      },
+      "subheadline": {
+        "en": "Small-group cultural journeys, nocturnal taco & mezcal trails, and ancient pyramids — bookable in seconds directly with local experts, zero OTA markups.",
+        "es": "Recorridos culturales en grupos pequeños, rutas nocturnas de tacos y mezcal, y pirámides milenarias — reserva al instante directo con expertos locales, sin sobrecargos de intermediarios."
+      },
+      "image": "/images/hero-cdmx.jpg",
+      "imageAlt": {
+        "en": "Golden hour panorama over historic Mexico City architecture and volcanic horizon",
+        "es": "Panorámica al atardecer de la arquitectura histórica de la Ciudad de México"
+      }
+    }
+  },
+  "operator": {
+    "legalName": "SAT Mexico Tours & Travel",
+    "shortName": "SAT Mexico",
+    "yearsOperating": 30,
+    "googleRating": 4.8,
+    "googleReviewCount": 3698,
+    "googleBusinessUrl": "https://share.google/9maa7tecWEpBRh3Is",
+    "email": "concierge@visitcdmx.travel",
+    "whatsappDisplay": "+52 (55) Concierge",
+    "disclaimer": {
+      "en": "VisitCDMX.travel is an independent Mexico City travel experiences marketplace operated by SAT Mexico Tours & Travel. Not affiliated with the Mexico City Government.",
+      "es": "VisitCDMX.travel es una plataforma independiente de experiencias turísticas en la Ciudad de México operada por SAT Mexico Tours & Travel. No está afiliada al Gobierno de la Ciudad de México."
+    }
+  },
+  "palette": {
+    "obsidian": "#111111",
+    "ivory": "#FAF8F4",
+    "surface": "#FFFFFF",
+    "terracotta": "#C85A32",
+    "cobalt": "#1D4E89",
+    "mezcalGold": "#C59B27",
+    "stone": "#6B655E",
+    "border": "#E6E0D6"
+  },
+  "arivalSections": [
+    {
+      "id": "all",
+      "label": { "en": "All Experiences", "es": "Todas" },
+      "arivalType": "All"
+    },
+    {
+      "id": "must-sees",
+      "label": { "en": "CDMX Must-Sees", "es": "Imprescindibles" },
+      "arivalType": "Tours > Sightseeing"
+    },
+    {
+      "id": "food-mezcal",
+      "label": { "en": "Food, Tacos & Mezcal", "es": "Tacos, Comida y Mezcal" },
+      "arivalType": "Tours > Food & Drink"
+    },
+    {
+      "id": "culture-heritage",
+      "label": { "en": "Culture & Heritage", "es": "Cultura y Patrimonio" },
+      "arivalType": "Tours > Sightseeing"
+    },
+    {
+      "id": "history-museums",
+      "label": { "en": "History & Museums", "es": "Historia y Museos" },
+      "arivalType": "Tours > Sightseeing"
+    },
+    {
+      "id": "day-trips",
+      "label": { "en": "Day Trips & Beyond", "es": "Escapadas de un Día" },
+      "arivalType": "Tours > Day Trips"
+    }
+  ],
+  "neighborhoods": [
+    {
+      "id": "teotihuacan",
+      "name": { "en": "Teotihuacan Valley", "es": "Valle de Teotihuacán" },
+      "subtitle": { "en": "Pyramids of the Sun & Moon · 50 km NE", "es": "Pirámides del Sol y la Luna · 50 km NE" },
+      "filterSection": "must-sees",
+      "image": "/images/tour-teotihuacan.jpg"
+    },
+    {
+      "id": "coyoacan",
+      "name": { "en": "Coyoacán", "es": "Coyoacán" },
+      "subtitle": { "en": "Cobblestone Plazas, Markets & Bohemian Heritage", "es": "Plazas Empedradas, Mercados y Herencia Bohemia" },
+      "filterSection": "food-mezcal",
+      "image": "/images/tour-coyoacan.jpg"
+    },
+    {
+      "id": "xochimilco",
+      "name": { "en": "Xochimilco & UNAM", "es": "Xochimilco y UNAM" },
+      "subtitle": { "en": "UNESCO Floating Gardens & Muralist Architecture", "es": "Chinampas UNESCO y Muralismo Universitario" },
+      "filterSection": "culture-heritage",
+      "image": "/images/tour-xochimilco.jpg"
+    },
+    {
+      "id": "centro-reforma",
+      "name": { "en": "Centro Histórico & Chapultepec", "es": "Centro Histórico y Chapultepec" },
+      "subtitle": { "en": "Aztec Roots, Palaces & Anthropology Museum", "es": "Raíces Mexicas, Palacios y Museo de Antropología" },
+      "filterSection": "history-museums",
+      "image": "/images/tour-anthropology.jpg"
+    },
+    {
+      "id": "roma-condesa",
+      "name": { "en": "Roma, Condesa & Night Trails", "es": "Roma, Condesa y Ruta Nocturna" },
+      "subtitle": { "en": "Taquerías al Pastor, Mezcalerías & Local Nightlife", "es": "Taquerías al Pastor, Mezcalerías y Vida Nocturna" },
+      "filterSection": "food-mezcal",
+      "image": "/images/tour-tacos-mezcal.jpg"
+    },
+    {
+      "id": "taxco-cuernavaca",
+      "name": { "en": "Taxco & Cuernavaca", "es": "Taxco y Cuernavaca" },
+      "subtitle": { "en": "Silver Mountain Town & Eternal Spring Escape", "es": "Pueblo Mágico de la Plata y Ciudad de la Eterna Primavera" },
+      "filterSection": "day-trips",
+      "image": "/images/tour-taxco.jpg"
+    }
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "bokunId": "157899",
+  "internalCode": "SAT_TEO_AI_OK",
+  "slug": "teotihuacan-guadalupe-tlatelolco",
+  "order": 1,
+  "catalogType": "permanent",
+  "sectionId": "must-sees",
+  "arivalOperatorType": "Tours",
+  "arivalCategory": "Tours > Sightseeing",
+  "arivalTags": ["Archaeology", "UNESCO World Heritage", "Cultural Heritage", "Full-Day", "Certified Guide"],
+  "neighborhood": "teotihuacan",
+  "gttdEligible": "yes",
+  "directWebRateBadge": true,
+  "featured": true,
+  "groupType": "small-group",
+  "maxGroupSize": 16,
+  "durationHours": 9,
+  "durationLabel": {
+    "en": "9 hours · Full Day",
+    "es": "9 horas · Día Completo"
+  },
+  "priceUsd": 89,
+  "otaComparisonUsd": 109,
+  "title": {
+    "en": "Teotihuacan, Guadalupe Shrine & Tlatelolco Tour",
+    "es": "Teotihuacán, Basílica de Guadalupe y Tlatelolco"
+  },
+  "shortTagline": {
+    "en": "Three epochs of Mexican history in one seamless, all-admission journey.",
+    "es": "Tres épocas de la historia de México en un recorrido fluido con entradas incluidas."
+  },
+  "summary": {
+    "en": "Walk the Avenue of the Dead at the Pyramids of the Sun and Moon, visit the sacred Basilica of Our Lady of Guadalupe, and stand at the Plaza of the Three Cultures in Tlatelolco with a certified historian guide.",
+    "es": "Recorre la Calzada de los Muertos frente a las Pirámides del Sol y la Luna, visita la Basílica de Guadalupe y descubre la Plaza de las Tres Culturas en Tlatelolco junto a un guía historiador certificado."
+  },
+  "editorialIntro": {
+    "en": "Few days in the Americas span two millennia as effortlessly as this route. Starting at Tlatelolco where Aztec foundations meet colonial stone, continuing north to the monumental pyramids of Teotihuacan, and closing at Tepeyac Hill, every admission ticket and transfer is coordinated in advance so you focus purely on the story.",
+    "es": "Pocos recorridos en América abarcan dos milenios con tanta claridad. Desde Tlatelolco —donde los basamentos mexicas conviven con la piedra virreinal— hasta las pirámides monumentales de Teotihuacán y el Cerro del Tepeyac, cada acceso y traslado queda resuelto desde el primer minuto."
+  },
+  "heroImage": "/images/tour-teotihuacan.jpg",
+  "heroImageAlt": {
+    "en": "Pyramid of the Sun along the Avenue of the Dead in Teotihuacan at morning light",
+    "es": "Pirámide del Sol sobre la Calzada de los Muertos en Teotihuacán bajo la luz de la mañana"
+  },
+  "gallery": [
+    {
+      "src": "/images/tour-teotihuacan.jpg",
+      "alt": {
+        "en": "Teotihuacan Avenue of the Dead and Pyramid of the Sun",
+        "es": "Calzada de los Muertos y Pirámide del Sol en Teotihuacán"
+      }
+    }
+  ],
+  "meetingPoint": {
+    "name": {
+      "en": "Central CDMX Hotel Pick-up or Paseo de la Reforma Meeting Point",
+      "es": "Pick-up en hoteles céntricos de CDMX o punto de encuentro en Paseo de la Reforma"
+    },
+    "address": "Paseo de la Reforma & Ángel de la Independencia, Cuauhtémoc, CDMX",
+    "pickupIncluded": true,
+    "mapQuery": "Angel de la Independencia, Mexico City"
+  },
+  "included": {
+    "en": [
+      "Official Teotihuacan archaeological zone admission fee",
+      "Certified bilingual historian guide (English / Spanish)",
+      "Air-conditioned round-trip transportation from central CDMX",
+      "Guided visits to Tlatelolco & Basilica of Guadalupe",
+      "Obsidian & maguey artisan workshop demonstration with pulque tasting"
+    ],
+    "es": [
+      "Boleto oficial de entrada a la Zona Arqueológica de Teotihuacán",
+      "Guía historiador bilingüe certificado (inglés / español)",
+      "Transporte redondo con aire acondicionado desde zonas céntricas de CDMX",
+      "Visitas guiadas a Tlatelolco y la Basílica de Guadalupe",
+      "Demostración artesanal de obsidiana y maguey con degustación de pulque"
+    ]
+  },
+  "notIncluded": {
+    "en": [
+      "Lunch and beverages (optional stop at a traditional Teotihuacan restaurant)",
+      "Optional gratuities for guide and driver"
+    ],
+    "es": [
+      "Comida y bebidas (parada opcional en restaurante tradicional en Teotihuacán)",
+      "Propinas opcionales para guía y conductor"
+    ]
+  },
+  "noSurpriseNote": {
+    "en": "Teotihuacan archaeological entrance ticket is already included in your rate. Zero hidden conservation fees or surprise cash charges at the gate.",
+    "es": "La entrada oficial a la Zona Arqueológica de Teotihuacán ya está incluida en tu tarifa. Cero cobros sorpresa en taquilla."
+  },
+  "highlights": {
+    "en": [
+      "Direct operator rate with Teotihuacan entry tickets included",
+      "Early departure to beat peak midday crowds at the Avenue of the Dead",
+      "Instant Bókun voucher + WhatsApp pick-up confirmation 24h prior"
+    ],
+    "es": [
+      "Tarifa directa de operador con boleto de Teotihuacán incluido",
+      "Salida temprana para recorrer la Calzada de los Muertos antes de la hora pico",
+      "Confirmación instantánea Bókun + aviso de pick-up por WhatsApp 24 h antes"
+    ]
+  },
+  "itinerary": [
+    {
+      "time": "08:00",
+      "title": { "en": "Central CDMX Departure", "es": "Salida desde zonas céntricas de CDMX" },
+      "description": {
+        "en": "Hotel pick-up in Roma, Condesa, Polanco, Juárez, or Centro, with exact window confirmed via WhatsApp the evening before.",
+        "es": "Pick-up en hoteles de Roma, Condesa, Polanco, Juárez o Centro con horario confirmado por WhatsApp la tarde previa."
+      }
+    },
+    {
+      "time": "08:45",
+      "title": { "en": "Plaza of the Three Cultures (Tlatelolco)", "es": "Plaza de las Tres Culturas (Tlatelolco)" },
+      "description": {
+        "en": "Explore the last Aztec marketplace ruins alongside 16th-century Santiago Church and modern Mexican history.",
+        "es": "Explora los vestigios del gran mercado mexica junto al templo de Santiago del siglo XVI."
+      }
+    },
+    {
+      "time": "10:15",
+      "title": { "en": "Teotihuacan Archaeological Zone", "es": "Zona Arqueológica de Teotihuacán" },
+      "description": {
+        "en": "Guided walk through the Pyramid of the Sun, Pyramid of the Moon, Temple of Quetzalpapálotl, and Avenue of the Dead.",
+        "es": "Recorrido guiado por la Pirámide del Sol, la Pirámide de la Luna, el Palacio de Quetzalpapálotl y la Calzada de los Muertos."
+      }
+    },
+    {
+      "time": "14:30",
+      "title": { "en": "Basilica of Our Lady of Guadalupe", "es": "Basílica de Santa María de Guadalupe" },
+      "description": {
+        "en": "Visit both the historic and modern basilicas at Tepeyac Hill, Mexico's most iconic pilgrimage sanctuary.",
+        "es": "Visita la antigua y la nueva basílica en el Cerro del Tepeyac, el santuario más emblemático de América."
+      }
+    }
+  ],
+  "faqs": [
+    {
+      "question": {
+        "en": "Are Teotihuacan archaeological entrance tickets included?",
+        "es": "¿Está incluido el boleto de entrada a Teotihuacán?"
+      },
+      "answer": {
+        "en": "Yes. Your official Teotihuacan admission ticket is 100% included in the listed price with no extra gate fees.",
+        "es": "Sí. Tu boleto oficial de acceso a la Zona Arqueológica de Teotihuacán está 100% incluido en el precio publicado."
+      }
+    },
+    {
+      "question": {
+        "en": "How and when is my hotel pick-up time confirmed?",
+        "es": "¿Cómo y cuándo se confirma el horario de mi pick-up?"
+      },
+      "answer": {
+        "en": "You receive instant booking confirmation immediately via Bókun, followed by your exact pick-up window and driver contact via WhatsApp and email 24 hours before departure.",
+        "es": "Recibes confirmación inmediata de reserva por Bókun y el horario exacto de pick-up junto con contacto directo por WhatsApp y correo 24 horas antes."
+      }
+    },
+    {
+      "question": {
+        "en": "Can you climb the Pyramid of the Sun?",
+        "es": "¿Se puede subir a la Pirámide del Sol?"
+      },
+      "answer": {
+        "en": "Per INAH preservation rules, climbing the main pyramids is currently restricted; our route brings you right to the plazas, murals, and best panoramic vantage points.",
+        "es": "Por normatividad del INAH el ascenso a las pirámides principales permanece cerrado; nuestro recorrido te lleva a las plazas, murales y mejores vistas panorámicas."
+      }
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Rachel M.",
+      "origin": "Austin, TX",
+      "rating": 5,
+      "date": "2026-10",
+      "source": "Google Reviews",
+      "quote": {
+        "en": "Impeccable organization from start to finish. Our guide knew every detail of Teotihuacan and Tlatelolco, and traveling solo I felt completely looked after the entire day.",
+        "es": "Organización impecable de principio a fin. Nuestro guía dominaba cada detalle de Teotihuacán y Tlatelolco; viajando sola me sentí acompañada y puntual todo el día."
+      }
+    },
+    {
+      "author": "David & Claire H.",
+      "origin": "Chicago, IL",
+      "rating": 5,
+      "date": "2026-09",
+      "source": "Google Reviews",
+      "quote": {
+        "en": "Zero surprise charges at the pyramids, comfortable van, and an unforgettable pace. Easily the highlight of our week in Mexico City.",
+        "es": "Cero cobros sorpresa en las pirámides, camioneta súper cómoda y un ritmo ideal. Sin duda lo mejor de nuestra semana en Ciudad de México."
+      }
+    }
+  ]
+}

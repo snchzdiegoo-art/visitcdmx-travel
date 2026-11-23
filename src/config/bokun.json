@@ -1,0 +1,21 @@
+{
+  "bookingChannelName": "VisitCDMX.travel",
+  "bookingChannelUUID": "",
+  "widgetLoaderBaseUrl": "https://widgets.bokun.io/assets/javascripts/apps/build/BokunWidgetsLoader.js",
+  "calendarEmbedBaseUrl": "https://widgets.bokun.io/online-sales",
+  "excludedProductIds": ["701338"],
+  "sharedResourcePairs": [
+    {
+      "webProductId": "1230577",
+      "otaProductId": "701338",
+      "note": "Link in Bókun Experiences > Resource Management to prevent overbooking while preserving direct web rate."
+    }
+  ],
+  "payments": {
+    "provider": "Stripe Connect Mexico",
+    "adaptivePricingRecommended": true,
+    "mxnLocalMethods": ["MSI", "OXXO", "SPEI", "Apple Pay", "Google Pay"],
+    "usdMethods": ["Visa", "Mastercard", "Amex", "Apple Pay", "Google Pay", "Link"]
+  },
+  "whatsappDefaultNumber": "5219981234567"
+}

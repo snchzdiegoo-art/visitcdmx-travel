@@ -1,0 +1,346 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BokunCalendarWidget from './BokunCalendarWidget.astro';
+import theme from '../config/theme.json';
+import { getHomeUrl, getTourUrl, getWhatsappUrl, uiCopy, type Locale } from '../lib/i18n';
+
+interface Props {
+  tour: CollectionEntry<'tours'>['data'];
+  locale: Locale;
+}
+
+const { tour, locale } = Astro.props;
+const copy = uiCopy[locale];
+const homeUrl = getHomeUrl(locale);
+const whatsappUrl = getWhatsappUrl(locale, tour.title[locale]);
+const isPrivate = tour.groupType === 'private';
+const isTransfer = tour.catalogType === 'transfer';
+
+const pageTitle = `${tour.title[locale]} | ${theme.destination.brandName}`;
+const pageDescription = tour.summary[locale];
+const canonicalUrl = new URL(getTourUrl(tour.slug, locale), theme.destination.siteUrl).toString();
+const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(tour.meetingPoint.mapQuery)}`;
+
+// Schema.org JSON-LD: TouristTrip + Product Offer + FAQPage + BreadcrumbList (SEO & GEO/AEO)
+const schemas: Record<string, unknown>[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'TouristTrip',
+    name: tour.title[locale],
+    description: tour.summary[locale],
+    url: canonicalUrl,
+    image: new URL(tour.heroImage, theme.destination.siteUrl).toString(),
+    touristType: tour.arivalTags,
+    provider: {
+      '@type': 'TravelAgency',
+      name: theme.operator.legalName,
+      url: theme.destination.siteUrl,
+    },
+    offers: {
+      '@type': 'Offer',
+      url: canonicalUrl,
+      priceCurrency: 'USD',
+      price: String(tour.priceUsd),
+      availability:
+        tour.catalogType === 'seasonal'
+          ? 'https://schema.org/LimitedAvailability'
+          : 'https://schema.org/InStock',
+      seller: {
+        '@type': 'Organization',
+        name: theme.operator.legalName,
+      },
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: String(theme.operator.googleRating),
+      reviewCount: String(theme.operator.googleReviewCount),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: tour.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question[locale],
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer[locale],
+      },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: theme.destination.brandName,
+        item: new URL(homeUrl, theme.destination.siteUrl).toString(),
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: tour.title[locale],
+        item: canonicalUrl,
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  locale={locale}
+  ogImage={tour.heroImage}
+  schemaJson={schemas}
+  loadBokunScript={true}
+  whatsappContext={tour.title[locale]}
+>
+  <article class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-24 lg:pb-12">
+    <!-- Breadcrumbs -->
+    <nav class="flex flex-wrap items-center gap-2 text-xs text-stone mb-6" aria-label="Breadcrumb">
+      <a href={homeUrl} class="hover:text-terracotta transition-colors">
+        {locale === 'es' ? 'Inicio' : 'Home'}
+      </a>
+      <span>/</span>
+      <a href={`${homeUrl}#experiences`} class="hover:text-terracotta transition-colors">
+        {tour.arivalCategory}
+      </a>
+      <span>/</span>
+      <span class="text-obsidian font-medium truncate">{tour.title[locale]}</span>
+    </nav>
+
+    <!-- Editorial Header & Core Badges -->
+    <header class="max-w-4xl">
+      <div class="flex flex-wrap items-center gap-2.5 mb-4">
+        <span class="inline-flex items-center rounded-full bg-obsidian text-ivory text-xs font-semibold px-3.5 py-1">
+          {isPrivate ? copy.privateTour : `${copy.smallGroup} · ${copy.maxGuests} ${tour.maxGroupSize} ${copy.guests}`}
+        </span>
+        <span class="inline-flex items-center rounded-full bg-white border border-hairline text-charcoal text-xs font-medium px-3.5 py-1">
+          {tour.durationLabel[locale]}
+        </span>
+        {tour.directWebRateBadge && (
+          <span class="inline-flex items-center rounded-full bg-terracotta/12 text-terracotta border border-terracotta/25 text-xs font-bold px-3.5 py-1">
+            ✦ {copy.directRate}
+          </span>
+        )}
+      </div>
+
+      <h1 class="font-editorial text-3xl sm:text-5xl font-bold text-obsidian leading-[1.1]">
+        {tour.title[locale]}
+      </h1>
+
+      <p class="mt-4 text-base sm:text-lg text-charcoal/85 leading-relaxed">
+        {tour.shortTagline[locale]}
+      </p>
+    </header>
+
+    <!-- Main 2-Column Hybrid Layout (Editorial Content Left + Immediate Live Bókun Calendar Right) -->
+    <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      <!-- Left Editorial & Conversion Column -->
+      <div class="lg:col-span-7 xl:col-span-8 space-y-10">
+        <!-- Hero Visual -->
+        <figure class="rounded-3xl overflow-hidden bg-sand border border-hairline shadow-sm">
+          <img
+            src={tour.heroImage}
+            alt={tour.heroImageAlt[locale]}
+            fetchpriority="high"
+            class="w-full aspect-[16/10] object-cover"
+          />
+        </figure>
+
+        <!-- MANDATORY ABOVE-THE-FOLD BOX: Exact Price · Included vs. Not Included (No Surprise Fees) -->
+        <section class="rounded-3xl bg-white border-2 border-obsidian/10 p-6 sm:p-8 shadow-sm">
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-hairline">
+            <h2 class="font-editorial text-xl sm:text-2xl font-bold text-obsidian">
+              {copy.noSurpriseTitle}
+            </h2>
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold px-3 py-1">
+              ✓ {locale === 'es' ? 'Transparencia Total' : '100% Transparent'}
+            </span>
+          </div>
+
+          <p class="mt-4 text-sm font-medium text-charcoal bg-sand/70 rounded-2xl p-4 border border-hairline">
+            {tour.noSurpriseNote[locale]}
+          </p>
+
+          <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h3 class="font-sans text-xs font-bold uppercase tracking-[0.15em] text-emerald-800 mb-3">
+                ✓ {copy.included}
+              </h3>
+              <ul class="space-y-2.5 text-sm text-charcoal">
+                {tour.included[locale].map((item) => (
+                  <li class="flex items-start gap-2.5">
+                    <span class="text-emerald-700 font-bold mt-0.5">✓</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="font-sans text-xs font-bold uppercase tracking-[0.15em] text-stone mb-3">
+                — {copy.notIncluded}
+              </h3>
+              <ul class="space-y-2.5 text-sm text-stone">
+                {tour.notIncluded[locale].map((item) => (
+                  <li class="flex items-start gap-2.5">
+                    <span class="text-stone/70 mt-0.5">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Editorial Story & Highlights -->
+        <section class="space-y-4">
+          <h2 class="font-editorial text-2xl sm:text-3xl font-bold text-obsidian">
+            {locale === 'es' ? 'Sobre esta Experiencia' : 'The Editorial Perspective'}
+          </h2>
+          <p class="text-base text-charcoal/90 leading-relaxed">
+            {tour.editorialIntro[locale]}
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+            {tour.highlights[locale].map((hl) => (
+              <div class="rounded-2xl bg-white border border-hairline p-4 text-sm text-charcoal leading-snug">
+                <span class="text-terracotta font-bold block mb-1">✦</span>
+                {hl}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Above-the-Fold / High-Priority FAQs for GEO & AEO -->
+        <section class="space-y-4">
+          <h2 class="font-editorial text-2xl sm:text-3xl font-bold text-obsidian">
+            {locale === 'es' ? 'Preguntas Frecuentes Clave' : 'Key Traveler Questions'}
+          </h2>
+          <div class="space-y-3">
+            {tour.faqs.map((faq) => (
+              <details open class="group rounded-2xl bg-white border border-hairline p-5">
+                <summary class="font-semibold text-sm sm:text-base text-obsidian cursor-pointer list-none flex items-center justify-between gap-4">
+                  <span>{faq.question[locale]}</span>
+                  <span class="text-terracotta font-bold text-lg shrink-0 group-open:rotate-45 transition-transform">+</span>
+                </summary>
+                <p class="mt-3 text-sm text-stone leading-relaxed">
+                  {faq.answer[locale]}
+                </p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <!-- Scannable Itinerary Timeline -->
+        <section class="space-y-5">
+          <h2 class="font-editorial text-2xl sm:text-3xl font-bold text-obsidian">
+            {locale === 'es' ? 'Itinerario Paso a Paso' : 'Scannable Itinerary'}
+          </h2>
+          <ol class="relative border-l-2 border-hairline ml-3 space-y-6">
+            {tour.itinerary.map((step) => (
+              <li class="pl-7 relative">
+                <span class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-terracotta border-4 border-ivory"></span>
+                <span class="text-xs font-bold uppercase tracking-wider text-cobalt">
+                  {step.time}
+                </span>
+                <h3 class="font-editorial text-xl font-bold text-obsidian mt-0.5">
+                  {step.title[locale]}
+                </h3>
+                <p class="text-sm text-stone mt-1 leading-relaxed">
+                  {step.description[locale]}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <!-- Meeting Point & Instant Pick-up Clarity -->
+        <section class="rounded-3xl bg-white border border-hairline p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div class="space-y-1.5">
+            <p class="text-xs font-bold uppercase tracking-[0.16em] text-cobalt">
+              {locale === 'es' ? 'Punto de Encuentro y Pick-up' : 'Meeting Point & Pick-Up'}
+            </p>
+            <h3 class="font-editorial text-xl font-bold text-obsidian">
+              {tour.meetingPoint.name[locale]}
+            </h3>
+            <p class="text-sm text-stone">{tour.meetingPoint.address}</p>
+          </div>
+          <a
+            href={mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center rounded-full border border-obsidian hover:bg-obsidian hover:text-white text-obsidian text-xs font-semibold px-5 py-3 transition-colors shrink-0"
+          >
+            {locale === 'es' ? 'Abrir en Google Maps ↗' : 'View on Google Maps ↗'}
+          </a>
+        </section>
+
+        <!-- Post-Booking Complementary Transfer Callout (Never inside checkout per Tourpreneur!) -->
+        {!isTransfer && (
+          <section class="rounded-3xl bg-sand/70 border border-hairline p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+            <div>
+              <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-terracotta">
+                {locale === 'es' ? 'Complemento Antes de tu Llegada' : 'Pre-Arrival Travel Tip'}
+              </p>
+              <h3 class="font-editorial text-xl font-bold text-obsidian mt-1">
+                {locale === 'es' ? '¿Necesitas traslado privado desde el Aeropuerto (AICM)?' : 'Arriving at Mexico City Airport (MEX/NLU)?'}
+              </h3>
+              <p class="text-sm text-charcoal/80 mt-1">
+                {locale === 'es'
+                  ? 'Después de reservar tu tour puedes añadir nuestra camioneta ejecutiva privada (#630159) con monitoreo de vuelo.'
+                  : 'Add our private executive airport transfer (#630159) with live flight tracking separately after booking your experience.'}
+              </p>
+            </div>
+            <a
+              href={getTourUrl('mexico-city-private-transportation', locale)}
+              class="inline-flex items-center justify-center rounded-full bg-obsidian hover:bg-terracotta text-white text-xs font-semibold px-5 py-3 transition-colors shrink-0"
+            >
+              {locale === 'es' ? 'Ver Traslado Privado →' : 'See Private Transfers →'}
+            </a>
+          </section>
+        )}
+      </div>
+
+      <!-- Right Sticky Sidebar: Immediate Live Bókun Calendar Widget (GTTD Compliant) -->
+      <div class="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-24">
+        <BokunCalendarWidget tour={tour} locale={locale} />
+      </div>
+    </div>
+  </article>
+
+  <!-- Mobile-First Sticky Bottom Conversion Bar (< lg) -->
+  <div class="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-hairline px-4 py-3 shadow-[0_-8px_24px_rgba(17,17,17,0.08)]">
+    <div class="max-w-xl mx-auto flex items-center justify-between gap-3">
+      <div>
+        <span class="text-[10px] uppercase tracking-wider text-stone block leading-none">{copy.from}</span>
+        <span class="text-lg font-bold text-obsidian leading-tight" data-price-usd={tour.priceUsd}>
+          ${tour.priceUsd} USD
+        </span>
+      </div>
+      <div class="flex items-center gap-2">
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={copy.whatsappHelp}
+          class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-[#1C8B4C] text-white shrink-0"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.766.469 3.484 1.344 5l-1.406 5.156 5.281-1.391c1.469.797 3.109 1.219 4.75 1.219 5.516 0 9.969-4.453 9.969-9.969S17.547 2 12.031 2z" />
+          </svg>
+        </a>
+        <a
+          href="#booking-calendar"
+          class="inline-flex items-center justify-center rounded-full bg-terracotta hover:bg-terracotta-dark text-white font-semibold text-xs sm:text-sm px-5 py-3 transition-colors shadow-sm"
+        >
+          {copy.ctaBook}
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

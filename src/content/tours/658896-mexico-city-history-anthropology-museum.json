@@ -1,0 +1,175 @@
+{
+  "bokunId": "658896",
+  "internalCode": "Mexico City OTA_GYG",
+  "slug": "mexico-city-history-anthropology-museum",
+  "order": 3,
+  "catalogType": "permanent",
+  "sectionId": "history-museums",
+  "arivalOperatorType": "Tours",
+  "arivalCategory": "Tours > Sightseeing",
+  "arivalTags": ["Museums", "History", "Aztec Heritage", "Half-Day", "Guided Tour"],
+  "neighborhood": "centro-reforma",
+  "gttdEligible": "yes",
+  "directWebRateBadge": true,
+  "featured": true,
+  "groupType": "small-group",
+  "maxGroupSize": 14,
+  "durationHours": 5,
+  "durationLabel": {
+    "en": "5 hours · Half Day",
+    "es": "5 horas · Medio Día"
+  },
+  "priceUsd": 78,
+  "otaComparisonUsd": 96,
+  "title": {
+    "en": "Mexico City History & Anthropology Museum Tour",
+    "es": "Historia de CDMX y Museo de Antropología (5 h)"
+  },
+  "shortTagline": {
+    "en": "From the Aztec Stone of the Sun to Zócalo's grand palaces in five focused hours.",
+    "es": "De la Piedra del Sol al Zócalo y sus palacios históricos en cinco horas sin prisas."
+  },
+  "summary": {
+    "en": "Uncover 700 years of Mexico City history across the Zócalo, Metropolitan Cathedral, Paseo de la Reforma, and a curated guided walkthrough of the world-renowned National Museum of Anthropology (admission included).",
+    "es": "Descubre 700 años de historia entre el Zócalo, la Catedral Metropolitana, Paseo de la Reforma y un recorrido guiado por las salas esenciales del Museo Nacional de Antropología (boleto incluido)."
+  },
+  "editorialIntro": {
+    "en": "The National Museum of Anthropology holds over 20 sprawling halls — visiting without a scholar can feel overwhelming. Our 5-hour route pairs the living architecture of Centro Histórico with a laser-focused interpretation of the Mexica, Maya, and Teotihuacan masterpieces.",
+    "es": "El Museo Nacional de Antropología alberga más de 20 salas monumentales. Esta ruta de 5 horas conecta la arquitectura viva del Centro Histórico con una interpretación experta de las piezas maestras mexicas, mayas y teotihuacanas."
+  },
+  "heroImage": "/images/tour-anthropology.jpg",
+  "heroImageAlt": {
+    "en": "Iconic umbrella fountain courtyard of the National Museum of Anthropology in Chapultepec Park",
+    "es": "Icónica fuente del paraguas en el patio central del Museo Nacional de Antropología en Chapultepec"
+  },
+  "gallery": [
+    {
+      "src": "/images/tour-anthropology.jpg",
+      "alt": {
+        "en": "National Museum of Anthropology courtyard",
+        "es": "Patio del Museo Nacional de Antropología"
+      }
+    }
+  ],
+  "meetingPoint": {
+    "name": {
+      "en": "Centro Histórico / Reforma Pick-up or Palace of Fine Arts",
+      "es": "Pick-up en zonas céntricas o Palacio de Bellas Artes"
+    },
+    "address": "Av. Juárez & Eje Central, Centro Histórico, CDMX",
+    "pickupIncluded": true,
+    "mapQuery": "Museo Nacional de Antropologia, Mexico City"
+  },
+  "included": {
+    "en": [
+      "National Museum of Anthropology official admission ticket",
+      "Certified specialist guide in Mesoamerican & colonial history",
+      "Guided walking tour of Zócalo & Metropolitan Cathedral exterior/interior",
+      "Air-conditioned transfer between Centro Histórico and Chapultepec Park"
+    ],
+    "es": [
+      "Boleto oficial de entrada al Museo Nacional de Antropología",
+      "Guía especialista en historia mesoamericana y virreinal",
+      "Recorrido a pie por el Zócalo y la Catedral Metropolitana",
+      "Traslado con aire acondicionado entre Centro Histórico y Bosque de Chapultepec"
+    ]
+  },
+  "notIncluded": {
+    "en": [
+      "Food and beverages",
+      "Optional gratuities"
+    ],
+    "es": [
+      "Alimentos y bebidas",
+      "Propinas opcionales"
+    ]
+  },
+  "noSurpriseNote": {
+    "en": "Anthropology Museum entry ticket is included in your direct booking — no ticket line hassle or unexpected museum fee at arrival.",
+    "es": "El boleto del Museo Nacional de Antropología está incluido en tu reserva directa, sin cobros inesperados al llegar."
+  },
+  "highlights": {
+    "en": [
+      "Stand face-to-face with the Aztec Sun Stone (Piedra del Sol) with expert context",
+      "Curated 5-hour format leaves your afternoon free for Chapultepec or Polanco",
+      "Small-group headset clarity for effortless listening inside museum halls"
+    ],
+    "es": [
+      "Conoce la Piedra del Sol y la Sala Mexica con contexto histórico de primer nivel",
+      "Formato compacto de 5 horas que te deja la tarde libre en Chapultepec o Polanco",
+      "Grupo reducido para disfrutar cada sala del museo sin aglomeraciones"
+    ]
+  },
+  "itinerary": [
+    {
+      "time": "09:00",
+      "title": { "en": "Historic Center & Zócalo", "es": "Centro Histórico y Zócalo" },
+      "description": {
+        "en": "Discover Templo Mayor foundations, the Metropolitan Cathedral, and the National Palace facade.",
+        "es": "Recorre el entorno del Templo Mayor, la Catedral Metropolitana y la fachada de Palacio Nacional."
+      }
+    },
+    {
+      "time": "10:45",
+      "title": { "en": "Paseo de la Reforma Scenic Transfer", "es": "Trayecto panorámico por Paseo de la Reforma" },
+      "description": {
+        "en": "Travel along Mexico City's grand boulevard past the Angel of Independence to Chapultepec.",
+        "es": "Recorre la avenida más emblemática de la capital pasando por el Ángel de la Independencia."
+      }
+    },
+    {
+      "time": "11:15",
+      "title": { "en": "National Museum of Anthropology", "es": "Museo Nacional de Antropología" },
+      "description": {
+        "en": "Two-hour curated interpretation of the Mexica, Teotihuacan, and Maya halls; stay longer at your own pace afterwards.",
+        "es": "Interpretación guiada de 2 horas por las salas Mexica, Teotihuacán y Maya; puedes quedarte más tiempo por tu cuenta al terminar."
+      }
+    }
+  ],
+  "faqs": [
+    {
+      "question": {
+        "en": "Is the Anthropology Museum ticket included?",
+        "es": "¿Incluye la entrada al Museo de Antropología?"
+      },
+      "answer": {
+        "en": "Yes, official admission to the National Museum of Anthropology is included in your rate.",
+        "es": "Sí, la entrada oficial al Museo Nacional de Antropología está incluida en tu tarifa."
+      }
+    },
+    {
+      "question": {
+        "en": "Does this tour operate on Mondays?",
+        "es": "¿Opera este tour los lunes?"
+      },
+      "answer": {
+        "en": "The National Museum of Anthropology is closed on Mondays. Live Tuesday–Sunday availability appears automatically in the calendar.",
+        "es": "El Museo Nacional de Antropología cierra los lunes. La disponibilidad en vivo de martes a domingo aparece directo en el calendario."
+      }
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Jonathan K.",
+      "origin": "New York, NY",
+      "rating": 5,
+      "date": "2026-10",
+      "source": "Google Reviews",
+      "quote": {
+        "en": "Our historian guide connected the Zócalo directly to the Mexica room in the museum. Five hours flew by and left our afternoon open in Polanco.",
+        "es": "Nuestro guía conectó el Zócalo directamente con la Sala Mexica del museo. Las 5 horas volaron y nos quedó la tarde libre en Polanco."
+      }
+    },
+    {
+      "author": "Sofía R.",
+      "origin": "Monterrey, MX",
+      "rating": 5,
+      "date": "2026-09",
+      "source": "Google Reviews",
+      "quote": {
+        "en": "Excelente organización y nivel cultural del guía. Muy claro desde la reserva que el boleto del museo ya venía incluido.",
+        "es": "Excelente organización y nivel cultural del guía. Muy claro desde la reserva que el boleto del museo ya venía incluido."
+      }
+    }
+  ]
+}

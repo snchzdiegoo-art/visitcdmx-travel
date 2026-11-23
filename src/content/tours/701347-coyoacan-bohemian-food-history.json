@@ -1,0 +1,175 @@
+{
+  "bokunId": "701347",
+  "internalCode": "SAT_COY_FOOD",
+  "slug": "coyoacan-bohemian-food-history",
+  "order": 5,
+  "catalogType": "permanent",
+  "sectionId": "food-mezcal",
+  "arivalOperatorType": "Tours",
+  "arivalCategory": "Tours > Food & Drink",
+  "arivalTags": ["Food & Drink", "Walking Tour", "Boutique", "Bohemian Neighborhood", "Small Group"],
+  "neighborhood": "coyoacan",
+  "gttdEligible": "yes",
+  "directWebRateBadge": true,
+  "featured": true,
+  "groupType": "small-group",
+  "maxGroupSize": 10,
+  "durationHours": 4.5,
+  "durationLabel": {
+    "en": "4.5 hours · Boutique Culinary Walk",
+    "es": "4.5 horas · Caminata Gastronómica Boutique"
+  },
+  "priceUsd": 134,
+  "otaComparisonUsd": 159,
+  "title": {
+    "en": "Coyoacan Bohemian Food & History Walk",
+    "es": "Coyoacán Bohemio: Gastronomía e Historia a Pie"
+  },
+  "shortTagline": {
+    "en": "Seven curated tastings, storied plazas, and insider culinary storytelling in Frida's neighborhood.",
+    "es": "Siete degustaciones curadas, plazas históricas y relato culinario íntimo en el barrio de Frida."
+  },
+  "summary": {
+    "en": "An intimate, all-tastings-included walking feast through Coyoacán's cobblestone alleys, historic market stalls, artisan coffee roasters, and bohemian squares led by a local food historian.",
+    "es": "Un recorrido íntimo a pie con todas las degustaciones incluidas por callejones empedrados, puestos icónicos del mercado, tostadores de café y plazas bohemias de Coyoacán con un historiador gastronómico local."
+  },
+  "editorialIntro": {
+    "en": "Designed for discerning travelers who want depth over crowds. Rather than rushing past photo stops, this boutique 10-guest walk introduces you to multi-generational market cooks, freshly pressed tostadas, specialty Mexican coffee, and centuries of artistic rebellion in Coyoacán.",
+    "es": "Pensado para viajeros que buscan autenticidad sin prisas. Con cupo máximo de 10 personas, esta caminata boutique te conecta con cocineras tradicionales del mercado, tostadas icónicas, café de especialidad mexicano y siglos de historia artística en Coyoacán."
+  },
+  "heroImage": "/images/tour-coyoacan.jpg",
+  "heroImageAlt": {
+    "en": "Warm sunlit colonial street and vibrant culinary market colors in Coyoacán, Mexico City",
+    "es": "Calle empedrada soleada y sabores tradicionales del mercado en Coyoacán, Ciudad de México"
+  },
+  "gallery": [
+    {
+      "src": "/images/tour-coyoacan.jpg",
+      "alt": {
+        "en": "Coyoacán cobblestone street and local market gastronomy",
+        "es": "Calle empedrada y gastronomía tradicional en Coyoacán"
+      }
+    }
+  ],
+  "meetingPoint": {
+    "name": {
+      "en": "Jardín Centenario (Coyotes Fountain), Coyoacán",
+      "es": "Jardín Centenario (Fuente de los Coyotes), Coyoacán"
+    },
+    "address": "Jardín Centenario, Villa Coyoacán, 04000 Ciudad de México",
+    "pickupIncluded": false,
+    "mapQuery": "Fuente de los Coyotes, Coyoacan, Mexico City"
+  },
+  "included": {
+    "en": [
+      "7+ generous food & beverage tastings (equivalent to a full meal)",
+      "Intimate boutique group capped at 10 guests",
+      "Dedicated local food & history specialist guide",
+      "Curated visits to Mercado de Coyoacán, heritage plazas & specialty coffee roaster"
+    ],
+    "es": [
+      "Más de 7 degustaciones generosas de comida y bebida (equivale a una comida completa)",
+      "Grupo boutique íntimo limitado a máximo 10 viajeros",
+      "Guía local especialista en gastronomía e historia de Coyoacán",
+      "Visitas curadas al Mercado de Coyoacán, plazas históricas y barra de café de especialidad"
+    ]
+  },
+  "notIncluded": {
+    "en": [
+      "Frida Kahlo Museum (Casa Azul) interior entry ticket",
+      "Hotel transportation (easy Uber/taxi drop-off directly at Jardín Centenario)"
+    ],
+    "es": [
+      "Entrada interior al Museo Frida Kahlo (Casa Azul)",
+      "Transporte desde hotel (llegada sencilla en Uber/taxi directo a Jardín Centenario)"
+    ]
+  },
+  "noSurpriseNote": {
+    "en": "Every single food tasting, market bite, coffee, and sweet stop is pre-paid and included. Arrive hungry and leave your wallet in your pocket.",
+    "es": "Todas las degustaciones en mercado, antojitos, café y postres están prepagados e incluidos. Llega con hambre y sin preocuparte por cuentas adicionales."
+  },
+  "highlights": {
+    "en": [
+      "Boutique small group (max 10 guests) for genuine conversation at family-run stalls",
+      "Dietary preferences (vegetarian / pescatarian) seamlessly accommodated on request",
+      "Covers both culinary craft and Coyoacán's bohemian artistic legacy"
+    ],
+    "es": [
+      "Grupo boutique (máx. 10 personas) con acceso cercano a cocinas familiares",
+      "Adaptable a preferencias vegetarianas o pescetarianas con aviso previo",
+      "Combina oficio gastronómico con la herencia bohemia y artística de Coyoacán"
+    ]
+  },
+  "itinerary": [
+    {
+      "time": "10:00",
+      "title": { "en": "Jardín Centenario & Barrio Origins", "es": "Jardín Centenario y Orígenes del Barrio" },
+      "description": {
+        "en": "Meet your food historian at the Coyotes Fountain with a warm Mexican specialty coffee tasting.",
+        "es": "Encuentro en la Fuente de los Coyotes seguido de una cata de café mexicano de especialidad."
+      }
+    },
+    {
+      "time": "11:00",
+      "title": { "en": "Mercado de Coyoacán Culinary Circuit", "es": "Circuito Culinario en el Mercado de Coyoacán" },
+      "description": {
+        "en": "Taste legendary hand-made tostadas, heirloom corn quesadillas, and seasonal aguas frescas.",
+        "es": "Degusta tostadas icónicas, quesadillas de maíz criollo y aguas frescas de temporada."
+      }
+    },
+    {
+      "time": "13:00",
+      "title": { "en": "Bohemian Alleys, Churros & Artisanal Sweets", "es": "Callejones Bohemios, Churros y Dulcería Artesanal" },
+      "description": {
+        "en": "Stroll Calle Francisco Sosa and Plaza Santa Catarina before closing with warm artisanal churros.",
+        "es": "Recorre la calle Francisco Sosa y la Plaza Santa Catarina cerrando con churros artesanales recién hechos."
+      }
+    }
+  ],
+  "faqs": [
+    {
+      "question": {
+        "en": "Is this enough food for lunch, and can vegetarians join?",
+        "es": "¿Las degustaciones sustituyen una comida completa? ¿Hay opción vegetariana?"
+      },
+      "answer": {
+        "en": "Yes — the 7+ tastings easily equal a generous lunch, and vegetarian diets are happily accommodated when noted at checkout.",
+        "es": "Sí, las más de 7 degustaciones equivalen a una comida abundante y adaptamos menú vegetariano indicándolo al reservar."
+      }
+    },
+    {
+      "question": {
+        "en": "Why is this boutique walk priced differently from mass bus tours?",
+        "es": "¿Qué diferencia esta caminata boutique de un tour masivo en autobús?"
+      },
+      "answer": {
+        "en": "We cap the group at 10 guests and include every tasting at curated local establishments — no rushed souvenir stops or large bus groups.",
+        "es": "Limitamos el cupo a 10 personas e incluimos todas las degustaciones en lugares curados, sin paradas comerciales ni grupos masivos."
+      }
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Hannah & Ben L.",
+      "origin": "San Francisco, CA",
+      "rating": 5,
+      "date": "2026-10",
+      "source": "Google Reviews",
+      "quote": {
+        "en": "Worth every penny. Small group of 6, incredible market tostadas we'd never have ordered alone, and our guide brought Coyoacán's history to life.",
+        "es": "Vale cada centavo. Grupo de 6 personas, tostadas increíbles en el mercado que solos jamás habríamos pedido y un guía fascinante."
+      }
+    },
+    {
+      "author": "Lauren D.",
+      "origin": "London, UK",
+      "rating": 5,
+      "date": "2026-09",
+      "source": "Google Reviews",
+      "quote": {
+        "en": "So thoughtfully paced and genuinely local. Felt like exploring Coyoacán with a food-obsessed friend who lives in the neighborhood.",
+        "es": "Ritmo perfecto y súper auténtico. Se sintió como recorrer Coyoacán con un amigo apasionado por la gastronomía local."
+      }
+    }
+  ]
+}

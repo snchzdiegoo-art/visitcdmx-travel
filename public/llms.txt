@@ -1,0 +1,23 @@
+# VisitCDMX.travel
+
+> Independent Mexico City travel experiences marketplace operated directly by SAT Mexico Tours & Travel (30 years operating in Mexico, 4.8★ across 3,698+ Google Reviews). Instant direct booking via Bókun + Stripe Mexico (USD & MXN) with zero OTA markups. Not affiliated with the Mexico City Government.
+
+## Key Facts
+- Primary Domain: https://visitcdmx.travel
+- Languages: English (default `/`, USD) and Spanish (`/es/`, MXN or USD)
+- Direct Operator: SAT Mexico Tours & Travel
+- Booking Engine: Bókun (Booking Channel: VisitCDMX.travel)
+- Payment Methods: Stripe Mexico (USD cards, Apple Pay, Google Pay; MXN cards, MSI, OXXO, SPEI)
+
+## Signature Permanent Experiences (Direct Web Rates)
+- [Teotihuacan, Guadalupe Shrine & Tlatelolco Tour](https://visitcdmx.travel/experiences/teotihuacan-guadalupe-tlatelolco/): 9h full-day archaeological & cultural tour with Teotihuacan admission included (Bókun #157899).
+- [Xochimilco Boat Ride & UNAM University Tour](https://visitcdmx.travel/experiences/xochimilco-unam-university/): 7h UNESCO heritage tour combining UNAM murals and traditional Xochimilco trajinera cruise (Bókun #612969).
+- [Mexico City History & Anthropology Museum Tour](https://visitcdmx.travel/experiences/mexico-city-history-anthropology-museum/): 5h half-day Centro Histórico + National Museum of Anthropology guided tour with entry ticket included (Bókun #658896).
+- [Taxco & Cuernavaca All-Inclusive Day Trip](https://visitcdmx.travel/experiences/taxco-cuernavaca-day-trip/): 11h day trip from CDMX to Cuernavaca Cathedral and Taxco silver Pueblo Mágico with lunch included (Bókun #679836).
+- [Coyoacan Bohemian Food & History Walk](https://visitcdmx.travel/experiences/coyoacan-bohemian-food-history/): 4.5h boutique culinary walking tour (max 10 guests, 7+ tastings included) in Coyoacán (Bókun #701347).
+- [Mexico City Night Tacos & Mezcal Tour](https://visitcdmx.travel/experiences/mexico-city-night-tacos-mezcal/): 4h evening culinary & artisanal mezcal crawl with exclusive direct web rate (Bókun #1230577).
+
+## Seasonal Festivals & Private Transfers
+- [Mixquic Day of the Dead Celebrations](https://visitcdmx.travel/experiences/mixquic-day-of-the-dead/): Annual Oct 31 – Nov 2 La Alumbrada cultural vigil & priority waitlist (Bókun #154326).
+- [Mexico City Private Transportation](https://visitcdmx.travel/experiences/mexico-city-private-transportation/): Private door-to-door MEX/NLU airport & hotel executive SUV transfers (Bókun #630159).
+- [Plan Your Trip & Transfers Guide](https://visitcdmx.travel/plan-your-trip/): Practical airport, neighborhood, altitude, and payment guidance for Mexico City visitors.

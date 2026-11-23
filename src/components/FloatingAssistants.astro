@@ -1,0 +1,176 @@
+---
+import theme from '../config/theme.json';
+import { getTourUrl, getWhatsappUrl, uiCopy, type Locale } from '../lib/i18n';
+
+interface Props {
+  locale: Locale;
+  whatsappContext?: string;
+}
+
+const { locale, whatsappContext } = Astro.props;
+const copy = uiCopy[locale];
+const whatsappUrl = getWhatsappUrl(locale, whatsappContext);
+
+const quickMatches = [
+  {
+    slug: 'teotihuacan-guadalupe-tlatelolco',
+    vibe: { en: 'First time in CDMX · Ancient Pyramids', es: 'Primera vez en CDMX · Pirámides' },
+    title: { en: 'Teotihuacan, Guadalupe & Tlatelolco', es: 'Teotihuacán, Basílica y Tlatelolco' },
+    priceUsd: 89,
+  },
+  {
+    slug: 'mexico-city-night-tacos-mezcal',
+    vibe: { en: 'Best Direct Web Rate · Food & Nightlife', es: 'Mejor Tarifa Web · Tacos y Mezcal' },
+    title: { en: 'Night Tacos & Mezcal Tour', es: 'Tour Nocturno de Tacos y Mezcal' },
+    priceUsd: 95,
+  },
+  {
+    slug: 'coyoacan-bohemian-food-history',
+    vibe: { en: 'Boutique Culinary · Max 10 Guests', es: 'Gastronómico Boutique · Máx. 10' },
+    title: { en: 'Coyoacan Bohemian Food Walk', es: 'Coyoacán Bohemio: Comida e Historia' },
+    priceUsd: 134,
+  },
+  {
+    slug: 'mexico-city-private-transportation',
+    vibe: { en: 'MEX / NLU Airport & Private Chauffeur', es: 'Traslado Privado AICM / Hotel' },
+    title: { en: 'Private CDMX Transportation', es: 'Traslado Privado en CDMX' },
+    priceUsd: 65,
+  },
+];
+---
+
+<!-- Visita Los Cabos Inspired Bottom-Left "Plan Your Trip" Pill -->
+<div class="fixed bottom-20 lg:bottom-6 left-4 sm:left-6 z-40">
+  <button
+    type="button"
+    id="plan-trip-trigger"
+    class="inline-flex items-center gap-2.5 rounded-full bg-mezcal hover:bg-[#b58c1f] text-obsidian font-semibold text-xs sm:text-sm px-4 py-3 shadow-lg shadow-obsidian/20 transition-all cursor-pointer border border-obsidian/10"
+    aria-haspopup="dialog"
+    aria-controls="plan-trip-drawer"
+  >
+    <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+      <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6" />
+      <line x1="9" y1="3" x2="9" y2="18" />
+      <line x1="15" y1="6" x2="15" y2="21" />
+    </svg>
+    <span>{copy.planTripFab}</span>
+  </button>
+</div>
+
+<!-- Bottom-Right Direct WhatsApp Concierge -->
+<div class="fixed bottom-20 lg:bottom-6 right-4 sm:right-6 z-40">
+  <a
+    href={whatsappUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={copy.whatsappHelp}
+    class="inline-flex items-center gap-2 rounded-full bg-[#1C8B4C] hover:bg-[#16743E] text-white font-semibold text-xs sm:text-sm px-4 py-3 shadow-lg shadow-obsidian/20 transition-all"
+  >
+    <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.766.469 3.484 1.344 5l-1.406 5.156 5.281-1.391c1.469.797 3.109 1.219 4.75 1.219 5.516 0 9.969-4.453 9.969-9.969S17.547 2 12.031 2zm5.828 14.125c-.25.703-1.438 1.344-2 1.422-.516.078-1.172.109-1.891-.125-.438-.141-1-.328-1.719-.641-3.031-1.313-5-4.375-5.156-4.578-.141-.203-1.234-1.641-1.234-3.125s.781-2.219 1.063-2.516c.281-.313.609-.391.813-.391.203 0 .406 0 .578.016.188.016.438-.078.688.531.25.609.859 2.094.938 2.25.078.156.125.344.016.547-.094.203-.156.328-.313.5-.156.172-.328.391-.469.516-.156.156-.313.328-.141.641.188.313.813 1.344 1.75 2.172 1.203 1.078 2.219 1.406 2.531 1.563.313.156.484.125.672-.078.188-.203.781-.906.984-1.219.203-.313.406-.266.688-.156.281.109 1.781.844 2.094 1 .313.156.516.234.594.359.078.125.078.734-.172 1.438z" />
+    </svg>
+    <span class="hidden sm:inline">{copy.whatsappHelp}</span>
+  </a>
+</div>
+
+<!-- Interactive Plan Your Trip Drawer -->
+<div
+  id="plan-trip-drawer"
+  class="fixed inset-0 z-50 hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="plan-drawer-title"
+>
+  <div id="plan-trip-backdrop" class="absolute inset-0 bg-obsidian/55 backdrop-blur-xs"></div>
+  <div class="relative z-10 max-w-lg w-full h-full bg-ivory shadow-2xl border-r border-hairline flex flex-col overflow-hidden">
+    <div class="p-6 border-b border-hairline flex items-center justify-between bg-white">
+      <div>
+        <p class="text-[11px] uppercase tracking-[0.2em] text-terracotta font-semibold">
+          {theme.destination.brandName}
+        </p>
+        <h2 id="plan-drawer-title" class="font-editorial text-2xl font-bold text-obsidian mt-0.5">
+          {locale === 'es' ? 'Planea tu Viaje a CDMX' : 'Plan Your Mexico City Trip'}
+        </h2>
+      </div>
+      <button
+        type="button"
+        id="plan-trip-close"
+        class="w-9 h-9 rounded-full border border-hairline flex items-center justify-center text-stone hover:text-obsidian hover:bg-sand cursor-pointer"
+        aria-label="Close"
+      >
+        ✕
+      </button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto p-6 space-y-6">
+      <div class="rounded-2xl bg-white border border-hairline p-4">
+        <p class="text-xs font-semibold uppercase tracking-wider text-cobalt">
+          {locale === 'es' ? 'Rutas Recomendadas por Estilo' : 'Curated Picks by Travel Style'}
+        </p>
+        <div class="mt-3 space-y-2.5">
+          {quickMatches.map((item) => (
+            <a
+              href={getTourUrl(item.slug, locale)}
+              class="block rounded-xl border border-hairline hover:border-terracotta bg-ivory/60 hover:bg-white p-3.5 transition-colors"
+            >
+              <div class="flex items-start justify-between gap-3">
+                <div>
+                  <span class="text-[11px] font-medium text-stone block">{item.vibe[locale]}</span>
+                  <span class="font-semibold text-sm text-obsidian mt-0.5 block">{item.title[locale]}</span>
+                </div>
+                <span class="text-xs font-bold text-terracotta shrink-0" data-price-usd={item.priceUsd}>
+                  ${item.priceUsd} USD
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-obsidian text-ivory p-5 space-y-3">
+        <p class="text-xs uppercase tracking-[0.18em] text-mezcal font-semibold">
+          {locale === 'es' ? '¿Prefieres un itinerario a medida?' : 'Need a Custom CDMX Itinerary?'}
+        </p>
+        <p class="text-sm text-ivory/80 leading-relaxed">
+          {locale === 'es'
+            ? 'Nuestro equipo local de SAT Mexico (30 años operando en México) responde directo por WhatsApp para coordinar hoteles, traslados AICM y grupos privados.'
+            : 'Our local SAT Mexico specialists (30 years operating across Mexico) respond directly on WhatsApp for hotel pick-ups, airport transfers, and private groups.'}
+        </p>
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center w-full rounded-full bg-mezcal hover:bg-[#b58c1f] text-obsidian font-semibold text-sm py-2.5 px-4 transition-colors"
+        >
+          {locale === 'es' ? 'Chatear con Concierge Local' : 'Chat with Local Concierge'}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const trigger = document.getElementById('plan-trip-trigger');
+    const drawer = document.getElementById('plan-trip-drawer');
+    const closeBtn = document.getElementById('plan-trip-close');
+    const backdrop = document.getElementById('plan-trip-backdrop');
+    if (!trigger || !drawer) return;
+
+    function openDrawer() {
+      drawer.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDrawer() {
+      drawer.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    trigger.addEventListener('click', openDrawer);
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    if (backdrop) backdrop.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !drawer.classList.contains('hidden')) closeDrawer();
+    });
+  })();
+</script>

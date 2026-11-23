@@ -1,0 +1,103 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getTourUrl, uiCopy, type Locale } from '../lib/i18n';
+
+interface Props {
+  tour: CollectionEntry<'tours'>['data'];
+  locale: Locale;
+}
+
+const { tour, locale } = Astro.props;
+const copy = uiCopy[locale];
+const href = getTourUrl(tour.slug, locale);
+const isPrivate = tour.groupType === 'private';
+const unitLabel = tour.catalogType === 'transfer' ? copy.perVehicle : copy.perPerson;
+---
+
+<article
+  class="editorial-card group bg-white rounded-2xl overflow-hidden border border-hairline flex flex-col"
+  data-tour-card
+  data-section={tour.sectionId}
+  data-neighborhood={tour.neighborhood}
+  data-duration={tour.durationHours <= 5 ? 'half-day' : 'full-day'}
+>
+  <a href={href} class="relative block aspect-[4/3] overflow-hidden bg-sand">
+    <img
+      src={tour.heroImage}
+      alt={tour.heroImageAlt[locale]}
+      loading="lazy"
+      decoding="async"
+      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-obsidian/65 via-obsidian/10 to-transparent"></div>
+
+    <!-- Top Badges -->
+    <div class="absolute top-3.5 left-3.5 right-3.5 flex flex-wrap items-center justify-between gap-2">
+      <span class="inline-flex items-center rounded-full bg-obsidian/80 backdrop-blur-xs text-ivory text-[11px] font-medium px-3 py-1">
+        {tour.arivalCategory}
+      </span>
+      {tour.directWebRateBadge && (
+        <span class="inline-flex items-center rounded-full bg-terracotta text-white text-[11px] font-semibold px-3 py-1 shadow-xs">
+          {copy.directRate}
+        </span>
+      )}
+    </div>
+
+    <!-- Bottom Overlay Meta -->
+    <div class="absolute bottom-3.5 left-3.5 right-3.5 flex items-center justify-between text-xs text-white/95">
+      <span class="inline-flex items-center gap-1.5 font-medium">
+        <span class="w-1.5 h-1.5 rounded-full bg-mezcal"></span>
+        {isPrivate ? copy.privateTour : `${copy.smallGroup} · ${copy.maxGuests} ${tour.maxGroupSize}`}
+      </span>
+      <span class="font-medium bg-obsidian/55 backdrop-blur-xs rounded-full px-2.5 py-0.5">
+        {tour.durationLabel[locale]}
+      </span>
+    </div>
+  </a>
+
+  <div class="p-6 flex-1 flex flex-col">
+    <h3 class="font-editorial text-xl font-bold text-obsidian leading-snug group-hover:text-terracotta transition-colors">
+      <a href={href}>{tour.title[locale]}</a>
+    </h3>
+
+    <p class="text-sm text-stone mt-2.5 leading-relaxed line-clamp-2 flex-1">
+      {tour.shortTagline[locale]}
+    </p>
+
+    <!-- No Surprise Fees Micro-Assurance -->
+    <div class="mt-4 pt-3.5 border-t border-hairline/80 flex items-center gap-2 text-xs text-charcoal">
+      <svg class="w-4 h-4 text-emerald-700 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+      </svg>
+      <span class="truncate">
+        {locale === 'es' ? 'Sin cargos sorpresa · Confirmación inmediata' : 'No surprise fees · Instant confirmation'}
+      </span>
+    </div>
+
+    <!-- Price + CTA -->
+    <div class="mt-4 pt-4 border-t border-hairline flex items-end justify-between gap-3">
+      <div>
+        <span class="text-[11px] uppercase tracking-wider text-stone block">{copy.from}</span>
+        <div class="flex items-baseline gap-2">
+          <span class="text-xl font-bold text-obsidian" data-price-usd={tour.priceUsd}>
+            ${tour.priceUsd} USD
+          </span>
+          {tour.otaComparisonUsd && (
+            <span class="text-xs text-stone line-through" data-price-usd={tour.otaComparisonUsd}>
+              ${tour.otaComparisonUsd} USD
+            </span>
+          )}
+        </div>
+        <span class="text-[11px] text-stone">{unitLabel}</span>
+      </div>
+
+      <a
+        href={href}
+        class="inline-flex items-center gap-1.5 rounded-full bg-obsidian hover:bg-terracotta text-white text-xs font-semibold px-4 py-2.5 transition-colors shrink-0"
+      >
+        <span>{locale === 'es' ? 'Ver Fechas' : 'Check Dates'}</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</article>

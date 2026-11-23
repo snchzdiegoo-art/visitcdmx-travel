@@ -1,0 +1,129 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BokunCalendarWidget from './BokunCalendarWidget.astro';
+import theme from '../config/theme.json';
+import { getHomeUrl, type Locale } from '../lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const allTours = await getCollection('tours');
+const transferEntry = allTours.find((t) => t.data.bokunId === '630159');
+
+const pageTitle =
+  locale === 'es'
+    ? `Planea tu Viaje y Traslados Privados en CDMX | ${theme.destination.brandName}`
+    : `Plan Your Mexico City Trip & Private Transfers | ${theme.destination.brandName}`;
+
+const pageDescription =
+  locale === 'es'
+    ? 'Guía práctica para planear tu viaje a Ciudad de México: traslados privados ejecutivos desde AICM y AIFA (#630159), mejores colonias, altitud y pagos en MXN o USD.'
+    : 'Essential Mexico City travel planning guide: private executive MEX & NLU airport transfers (#630159), top neighborhoods, altitude advice, and transparent USD/MXN direct booking.';
+
+const tips = [
+  {
+    title: { en: 'Airports: MEX vs. NLU', es: 'Aeropuertos: AICM (MEX) vs. AIFA (NLU)' },
+    body: {
+      en: 'Benito Juárez (MEX) is 25–45 minutes from Roma, Condesa, and Polanco depending on traffic. Felipe Ángeles (NLU) is 55–80 minutes north — pre-booked private chauffeur transport eliminates surge fares and taxi lines.',
+      es: 'El AICM (MEX) está a 25–45 min de Roma, Condesa y Polanco según el tráfico. El AIFA (NLU) está a 55–80 min al norte — reservar traslado privado con tarifa fija evita filas y tarifas dinámicas.',
+    },
+  },
+  {
+    title: { en: 'Altitude & Comfort (2,240 m)', es: 'Altitud y Clima (2,240 m s. n. m.)' },
+    body: {
+      en: 'Mexico City sits at 7,350 ft elevation. Hydrate well on Day 1, layer a light jacket for cool evenings, and pair high-energy days like Teotihuacan with relaxed walking tours like Coyoacán.',
+      es: 'La CDMX se ubica a 2,240 metros sobre el nivel del mar. Hidrátate bien el primer día, lleva chamarra ligera para la tarde y combina días intensos como Teotihuacán con caminatas en Coyoacán.',
+    },
+  },
+  {
+    title: { en: 'Flexible Currency & Local Payments', es: 'Multidivisa y Pagos Locales (Stripe México)' },
+    body: {
+      en: 'International travelers can book seamlessly in USD with major cards, Apple Pay, or Google Pay. Paying in MXN unlocks Meses Sin Intereses (MSI), OXXO, and SPEI bank transfers.',
+      es: 'Viajeros internacionales pagan directo en USD con tarjeta, Apple Pay o Google Pay. Al cambiar a MXN en el encabezado se habilitan Meses Sin Intereses (MSI), OXXO y SPEI.',
+    },
+  },
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  locale={locale}
+  loadBokunScript={true}
+  whatsappContext={locale === 'es' ? 'Traslado Privado en CDMX (#630159)' : 'Mexico City Private Transportation (#630159)'}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20">
+    <nav class="flex items-center gap-2 text-xs text-stone mb-6">
+      <a href={getHomeUrl(locale)} class="hover:text-terracotta">{locale === 'es' ? 'Inicio' : 'Home'}</a>
+      <span>/</span>
+      <span class="text-obsidian font-medium">{locale === 'es' ? 'Planea tu Viaje y Traslados' : 'Plan Your Trip & Transfers'}</span>
+    </nav>
+
+    <div class="max-w-3xl">
+      <p class="text-xs font-bold uppercase tracking-[0.2em] text-cobalt">
+        {locale === 'es' ? 'LOGÍSTICA LOCAL · SAT MEXICO' : 'LOCAL LOGISTICS · SAT MEXICO'}
+      </p>
+      <h1 class="font-editorial text-4xl sm:text-5xl font-bold text-obsidian mt-2 leading-tight">
+        {locale === 'es' ? 'Planea tu Viaje y Traslados Privados en CDMX' : 'Plan Your Mexico City Trip & Private Transfers'}
+      </h1>
+      <p class="mt-4 text-base text-charcoal/85 leading-relaxed">
+        {locale === 'es'
+          ? 'Resuelve tu llegada desde el AICM o AIFA con nuestra flota privada ejecutiva (#630159) y organiza tu itinerario sin estrés.'
+          : 'Arrive effortlessly from MEX or NLU with our vetted private executive fleet (#630159) and practical insider guidance from 30 years on the ground.'}
+      </p>
+    </div>
+
+    {transferEntry && (
+      <div class="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div class="lg:col-span-7 xl:col-span-8 space-y-8">
+          <div class="rounded-3xl overflow-hidden border border-hairline bg-white">
+            <img
+              src={transferEntry.data.heroImage}
+              alt={transferEntry.data.heroImageAlt[locale]}
+              class="w-full aspect-[16/10] object-cover"
+            />
+            <div class="p-6 sm:p-8 space-y-4">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="rounded-full bg-obsidian text-white text-xs font-semibold px-3 py-1">
+                  {locale === 'es' ? '100% Privado · Puerta a Puerta' : '100% Private · Door-to-Door'}
+                </span>
+                <span class="text-xs text-stone">Bókun ID #{transferEntry.data.bokunId}</span>
+              </div>
+              <h2 class="font-editorial text-2xl sm:text-3xl font-bold text-obsidian">
+                {transferEntry.data.title[locale]}
+              </h2>
+              <p class="text-sm sm:text-base text-charcoal/85 leading-relaxed">
+                {transferEntry.data.editorialIntro[locale]}
+              </p>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-sm text-charcoal">
+                {transferEntry.data.included[locale].map((inc) => (
+                  <li class="flex items-start gap-2">
+                    <span class="text-emerald-700 font-bold">✓</span>
+                    <span>{inc}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Practical Mexico City Planning Tips -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {tips.map((tip) => (
+              <div class="rounded-2xl bg-white border border-hairline p-5 space-y-2">
+                <h3 class="font-editorial text-lg font-bold text-obsidian">{tip.title[locale]}</h3>
+                <p class="text-xs sm:text-sm text-stone leading-relaxed">{tip.body[locale]}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-24">
+          <BokunCalendarWidget tour={transferEntry.data} locale={locale} />
+        </div>
+      </div>
+    )}
+  </div>
+</BaseLayout>

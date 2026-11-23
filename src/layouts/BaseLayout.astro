@@ -1,0 +1,194 @@
+---
+import '../styles/global.css';
+import theme from '../config/theme.json';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FloatingAssistants from '../components/FloatingAssistants.astro';
+import { getAlternateUrl, getBokunChannelUuid, type Locale } from '../lib/i18n';
+
+interface Props {
+  title: string;
+  description: string;
+  locale: Locale;
+  ogImage?: string;
+  schemaJson?: Record<string, unknown> | Record<string, unknown>[];
+  loadBokunScript?: boolean;
+  whatsappContext?: string;
+}
+
+const {
+  title,
+  description,
+  locale,
+  ogImage = theme.destination.hero.image,
+  schemaJson,
+  loadBokunScript = false,
+  whatsappContext,
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, theme.destination.siteUrl).toString();
+const altEnUrl = new URL(getAlternateUrl(Astro.url.pathname, 'en'), theme.destination.siteUrl).toString();
+const altEsUrl = new URL(getAlternateUrl(Astro.url.pathname, 'es'), theme.destination.siteUrl).toString();
+const bokunChannelUuid = getBokunChannelUuid();
+const gtmId = (import.meta.env.PUBLIC_GTM_ID || '').trim();
+---
+
+<!doctype html>
+<html lang={locale} data-locale={locale} data-exchange-rate={theme.destination.exchangeRateMxnPerUsd}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={altEnUrl} />
+    <link rel="alternate" hreflang="es" href={altEsUrl} />
+    <link rel="alternate" hreflang="x-default" href={altEnUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={theme.destination.brandName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={new URL(ogImage, theme.destination.siteUrl).toString()} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Favicon SVG (100% original geometric compass monogram) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Editorial Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    {schemaJson && (
+      <script type="application/ld+json" set:html={JSON.stringify(schemaJson)} />
+    )}
+
+    {gtmId && (
+      <script is:inline define:vars={{ gtmId }}>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer',gtmId);
+      </script>
+    )}
+
+    <!-- Single deferred Bókun script per page (only when live UUID is configured) -->
+    {loadBokunScript && bokunChannelUuid && (
+      <script
+        defer
+        src={`https://widgets.bokun.io/assets/javascripts/apps/build/BokunWidgetsLoader.js?bookingChannelUUID=${encodeURIComponent(bokunChannelUuid)}`}
+      ></script>
+    )}
+  </head>
+  <body class="bg-ivory text-obsidian min-h-screen flex flex-col selection:bg-terracotta/20 selection:text-obsidian">
+    <Header locale={locale} pathname={Astro.url.pathname} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+    <FloatingAssistants locale={locale} whatsappContext={whatsappContext} />
+
+    <!-- Lightweight (~2KB) Currency & Bókun Language/Currency Sync Engine -->
+    <script is:inline>
+      (function () {
+        const html = document.documentElement;
+        const locale = html.getAttribute('data-locale') || 'en';
+        const rate = parseFloat(html.getAttribute('data-exchange-rate') || '19.08');
+        const STORAGE_KEY = 'visitcdmx_currency';
+
+        function getInitialCurrency() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const paramCurr = (urlParams.get('currency') || '').toUpperCase();
+          if (paramCurr === 'USD' || paramCurr === 'MXN') return paramCurr;
+          const saved = (localStorage.getItem(STORAGE_KEY) || '').toUpperCase();
+          if (saved === 'USD' || saved === 'MXN') return saved;
+          // EN defaults strictly to USD (GTTD coherence); ES defaults to MXN with 1-click USD switch
+          return locale === 'es' ? 'MXN' : 'USD';
+        }
+
+        function formatAmount(usdValue, currency) {
+          if (currency === 'MXN') {
+            const mxn = Math.round(usdValue * rate);
+            return '$' + mxn.toLocaleString('en-US') + ' MXN';
+          }
+          return '$' + Math.round(usdValue).toLocaleString('en-US') + ' USD';
+        }
+
+        function syncBokun(currency) {
+          if (window.BokunWidgets) {
+            try {
+              if (typeof window.BokunWidgets.setLanguage === 'function') {
+                window.BokunWidgets.setLanguage(locale);
+              }
+              if (typeof window.BokunWidgets.setCurrency === 'function') {
+                window.BokunWidgets.setCurrency(currency);
+              }
+            } catch (err) {
+              // Silent fallback while widget hydrates
+            }
+          }
+        }
+
+        function applyCurrency(currency, persist) {
+          html.setAttribute('data-currency', currency);
+          if (persist) {
+            try { localStorage.setItem(STORAGE_KEY, currency); } catch (e) {}
+          }
+
+          document.querySelectorAll('[data-price-usd]').forEach(function (el) {
+            const usd = parseFloat(el.getAttribute('data-price-usd') || '0');
+            if (!isNaN(usd) && usd > 0) {
+              el.textContent = formatAmount(usd, currency);
+            }
+          });
+
+          document.querySelectorAll('[data-currency-btn]').forEach(function (btn) {
+            const val = btn.getAttribute('data-currency-btn');
+            const active = val === currency;
+            btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+            if (active) {
+              btn.classList.add('bg-obsidian', 'text-white');
+              btn.classList.remove('text-stone', 'hover:text-obsidian');
+            } else {
+              btn.classList.remove('bg-obsidian', 'text-white');
+              btn.classList.add('text-stone', 'hover:text-obsidian');
+            }
+          });
+
+          document.querySelectorAll('[data-payment-hint]').forEach(function (el) {
+            const mxnNote = el.getAttribute('data-hint-mxn');
+            const usdNote = el.getAttribute('data-hint-usd');
+            el.textContent = currency === 'MXN' ? mxnNote : usdNote;
+          });
+
+          window.dispatchEvent(new CustomEvent('visitcdmx:currency-change', { detail: { currency, rate, locale } }));
+          syncBokun(currency);
+        }
+
+        const initial = getInitialCurrency();
+        applyCurrency(initial, false);
+
+        document.addEventListener('click', function (e) {
+          const btn = e.target.closest('[data-currency-btn]');
+          if (!btn) return;
+          const next = btn.getAttribute('data-currency-btn');
+          if (next === 'USD' || next === 'MXN') {
+            applyCurrency(next, true);
+          }
+        });
+
+        // Sync once Bókun deferred script finishes loading
+        window.addEventListener('load', function () {
+          syncBokun(html.getAttribute('data-currency') || initial);
+        });
+      })();
+    </script>
+  </body>
+</html>

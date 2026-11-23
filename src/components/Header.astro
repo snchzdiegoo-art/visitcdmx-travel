@@ -1,0 +1,124 @@
+---
+import theme from '../config/theme.json';
+import { getAlternateUrl, getHomeUrl, getPlanUrl, uiCopy, type Locale } from '../lib/i18n';
+
+interface Props {
+  locale: Locale;
+  pathname: string;
+}
+
+const { locale, pathname } = Astro.props;
+const copy = uiCopy[locale];
+const homeUrl = getHomeUrl(locale);
+const planUrl = getPlanUrl(locale);
+const enUrl = getAlternateUrl(pathname, 'en');
+const esUrl = getAlternateUrl(pathname, 'es');
+---
+
+<!-- Top Independent Operator Trust Ribbon -->
+<div class="bg-obsidian text-ivory/90 text-[11px] sm:text-xs py-2 px-4 border-b border-white/10">
+  <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+    <p class="flex items-center gap-2 font-medium tracking-wide">
+      <span class="inline-flex items-center gap-1 text-mezcal font-semibold">
+        ★ {theme.operator.googleRating}
+      </span>
+      <span class="truncate">{copy.trustBar}</span>
+    </p>
+    <span class="hidden md:inline-flex items-center gap-1.5 text-ivory/70">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+      {locale === 'es' ? 'Reserva Directa · Cero Sobreprecio OTA' : 'Direct Operator Rates · Zero OTA Markups'}
+    </span>
+  </div>
+</div>
+
+<!-- Sticky Editorial Magazine Header (Stitch Contemporary Mexican Editorial) -->
+<header class="sticky top-0 z-40 glass-header border-b border-hairline shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+    <!-- 100% Original Independent Brand Identity (NO official CDMX government logo imitation) -->
+    <a href={homeUrl} class="flex items-center gap-3 group shrink-0" aria-label={theme.destination.brandName}>
+      <span class="w-10 h-10 rounded-full bg-obsidian text-ivory flex items-center justify-center border border-mezcal/50 shadow-xs group-hover:bg-terracotta transition-colors">
+        <svg viewBox="0 0 28 28" class="w-5 h-5" fill="none" aria-hidden="true">
+          <circle cx="14" cy="14" r="10.5" stroke="currentColor" stroke-width="1.4" opacity="0.45" />
+          <path d="M14 4.5L16.4 11.6L23.5 14L16.4 16.4L14 23.5L11.6 16.4L4.5 14L11.6 11.6L14 4.5Z" fill="#C59B27" />
+          <circle cx="14" cy="14" r="2.2" fill="#FAF8F4" />
+        </svg>
+      </span>
+      <div class="leading-none">
+        <span class="font-editorial text-xl sm:text-2xl font-bold tracking-tight text-obsidian block">
+          Visit<span class="text-terracotta">CDMX</span><span class="text-stone font-sans text-xs font-semibold tracking-widest uppercase ml-0.5">.travel</span>
+        </span>
+        <span class="text-[9px] uppercase tracking-[0.2em] text-cobalt font-semibold hidden sm:block mt-1">
+          {locale === 'es' ? 'Curaduría Independiente · SAT Mexico' : 'Independent Curations · SAT Mexico'}
+        </span>
+      </div>
+    </a>
+
+    <!-- Primary Editorial Navigation -->
+    <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-charcoal" aria-label="Primary">
+      <a href={`${homeUrl}#experiences`} class="hover:text-terracotta transition-colors">
+        {copy.nav.experiences}
+      </a>
+      <a href={`${homeUrl}#neighborhoods`} class="hover:text-terracotta transition-colors">
+        {copy.nav.neighborhoods}
+      </a>
+      <a href={`${homeUrl}#seasonal`} class="hover:text-terracotta transition-colors">
+        {copy.nav.seasonal}
+      </a>
+      <a href={planUrl} class="hover:text-terracotta transition-colors">
+        {copy.nav.transfers}
+      </a>
+    </nav>
+
+    <!-- Dynamic EN|ES + USD|MXN Controls -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <!-- Language Switcher -->
+      <div class="inline-flex items-center rounded-full border border-hairline bg-white p-0.5 text-xs font-semibold" role="group" aria-label="Language">
+        <a
+          href={enUrl}
+          class:list={[
+            'px-2.5 py-1 rounded-full transition-colors',
+            locale === 'en' ? 'bg-obsidian text-white' : 'text-stone hover:text-obsidian',
+          ]}
+        >
+          EN
+        </a>
+        <a
+          href={esUrl}
+          class:list={[
+            'px-2.5 py-1 rounded-full transition-colors',
+            locale === 'es' ? 'bg-obsidian text-white' : 'text-stone hover:text-obsidian',
+          ]}
+        >
+          ES
+        </a>
+      </div>
+
+      <!-- Currency Switcher (Synced with Bókun Allow Any Currency) -->
+      <div class="inline-flex items-center rounded-full border border-hairline bg-white p-0.5 text-xs font-semibold" role="group" aria-label="Currency">
+        <button
+          type="button"
+          data-currency-btn="USD"
+          class="px-2.5 py-1 rounded-full transition-colors cursor-pointer bg-obsidian text-white"
+          aria-pressed="true"
+        >
+          USD
+        </button>
+        <button
+          type="button"
+          data-currency-btn="MXN"
+          class="px-2.5 py-1 rounded-full transition-colors cursor-pointer text-stone hover:text-obsidian"
+          aria-pressed="false"
+        >
+          MXN
+        </button>
+      </div>
+
+      <a
+        href={`${homeUrl}#experiences`}
+        class="hidden md:inline-flex items-center justify-center rounded-full bg-terracotta hover:bg-terracotta-dark text-white text-xs font-semibold px-4 py-2.5 transition-colors shadow-xs"
+      >
+        {locale === 'es' ? 'Reservar Ahora' : 'Book Direct'}
+      </a>
+    </div>
+  </div>
+</header>

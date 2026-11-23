@@ -1,0 +1,175 @@
+{
+  "bokunId": "612969",
+  "internalCode": "150",
+  "slug": "xochimilco-unam-university",
+  "order": 2,
+  "catalogType": "permanent",
+  "sectionId": "culture-heritage",
+  "arivalOperatorType": "Tours",
+  "arivalCategory": "Tours > Sightseeing",
+  "arivalTags": ["UNESCO World Heritage", "Boat Ride", "Architecture", "Murals", "Small Group"],
+  "neighborhood": "xochimilco",
+  "gttdEligible": "yes",
+  "directWebRateBadge": true,
+  "featured": true,
+  "groupType": "small-group",
+  "maxGroupSize": 16,
+  "durationHours": 7,
+  "durationLabel": {
+    "en": "7 hours · Culture & Canals",
+    "es": "7 horas · Cultura y Canales"
+  },
+  "priceUsd": 84,
+  "otaComparisonUsd": 102,
+  "title": {
+    "en": "Xochimilco Boat Ride & UNAM University Tour",
+    "es": "Trajineras en Xochimilco y Ciudad Universitaria (UNAM)"
+  },
+  "shortTagline": {
+    "en": "Glide through Aztec-era floating gardens and admire Diego Rivera's iconic UNAM murals.",
+    "es": "Navega por los canales ancestrales de Xochimilco y admira los murales Patrimonio UNESCO de la UNAM."
+  },
+  "summary": {
+    "en": "Pair two UNESCO World Heritage gems in southern Mexico City: a traditional colorful trajinera cruise along Xochimilco's ancient canals and an architectural walk through UNAM's Central Library and Olympic Stadium.",
+    "es": "Combina dos joyas Patrimonio de la Humanidad al sur de la capital: paseo en trajinera tradicional por los canales de Xochimilco y recorrido arquitectónico por la Biblioteca Central y el Estadio Olímpico de la UNAM."
+  },
+  "editorialIntro": {
+    "en": "Southern Mexico City reveals a completely different cadence from the historic center. Spend the morning amid the stone mosaic murals of Juan O'Gorman and Diego Rivera at Ciudad Universitaria before stepping aboard a painted trajinera to drift past chinampa flower nurseries.",
+    "es": "El sur de la Ciudad de México ofrece otro ritmo. Comienza frente a los murales de piedra natural de Juan O'Gorman y Diego Rivera en Ciudad Universitaria antes de abordar una trajinera tradicional entre chinampas y viveros."
+  },
+  "heroImage": "/images/tour-xochimilco.jpg",
+  "heroImageAlt": {
+    "en": "Colorful traditional trajinera boats gliding along the tranquil canals of Xochimilco",
+    "es": "Trajineras tradicionales de colores navegando por los canales de Xochimilco"
+  },
+  "gallery": [
+    {
+      "src": "/images/tour-xochimilco.jpg",
+      "alt": {
+        "en": "Traditional trajineras on Xochimilco canals",
+        "es": "Trajineras tradicionales en los canales de Xochimilco"
+      }
+    }
+  ],
+  "meetingPoint": {
+    "name": {
+      "en": "Central CDMX Hotel Pick-up or Reforma Departure Hub",
+      "es": "Pick-up en hoteles céntricos de CDMX o punto de encuentro en Reforma"
+    },
+    "address": "Paseo de la Reforma, Cuauhtémoc, CDMX",
+    "pickupIncluded": true,
+    "mapQuery": "Xochimilco Canals, Mexico City"
+  },
+  "included": {
+    "en": [
+      "Traditional trajinera boat ride through Xochimilco canals",
+      "Guided architectural tour of UNAM Central Campus (UNESCO)",
+      "Certified bilingual cultural guide (English / Spanish)",
+      "Round-trip air-conditioned transport from central CDMX"
+    ],
+    "es": [
+      "Paseo en trajinera tradicional por los canales de Xochimilco",
+      "Recorrido arquitectónico guiado por Ciudad Universitaria UNAM (UNESCO)",
+      "Guía cultural bilingüe certificado (inglés / español)",
+      "Transporte redondo con aire acondicionado desde zonas céntricas"
+    ]
+  },
+  "notIncluded": {
+    "en": [
+      "Optional floating mariachi songs or snacks bought from canal vendor boats",
+      "Lunch and optional gratuities"
+    ],
+    "es": [
+      "Música de mariachi opcional o antojitos adquiridos en lanchas del canal",
+      "Comida y propinas opcionales"
+    ]
+  },
+  "noSurpriseNote": {
+    "en": "Your trajinera boat fare and pier boarding fee are 100% included. Optional canal snacks and mariachi songs are completely up to you.",
+    "es": "El paseo en trajinera y la tarifa de embarcadero ya están 100% incluidos. Los antojitos y canciones de mariachi en el canal son totalmente opcionales."
+  },
+  "highlights": {
+    "en": [
+      "Two UNESCO World Heritage sites in one curated southern CDMX route",
+      "Up-close stories behind UNAM's 4,000 m² natural-stone Central Library mural",
+      "Relaxed 1-hour trajinera navigation with authentic local context"
+    ],
+    "es": [
+      "Dos sitios Patrimonio Mundial UNESCO en una sola ruta curada al sur de CDMX",
+      "Historia detallada del mural de piedra natural de la Biblioteca Central",
+      "Navegación tranquila en trajinera con contexto cultural auténtico"
+    ]
+  },
+  "itinerary": [
+    {
+      "time": "09:00",
+      "title": { "en": "Southbound Departure", "es": "Salida hacia el sur de la ciudad" },
+      "description": {
+        "en": "Scenic drive down Avenida Insurgentes toward Ciudad Universitaria.",
+        "es": "Trayecto panorámico por Avenida Insurgentes rumbo a Ciudad Universitaria."
+      }
+    },
+    {
+      "time": "10:00",
+      "title": { "en": "UNAM Central Campus & Murals", "es": "Campus Central de la UNAM y Murales" },
+      "description": {
+        "en": "Walk Las Islas esplanade, admire Juan O'Gorman's Central Library, and see Diego Rivera's relief at the Olympic Stadium.",
+        "es": "Recorre Las Islas, la Biblioteca Central de Juan O'Gorman y el relieve de Diego Rivera en el Estadio Olímpico."
+      }
+    },
+    {
+      "time": "12:15",
+      "title": { "en": "Xochimilco Trajinera Cruise", "es": "Paseo en Trajinera por Xochimilco" },
+      "description": {
+        "en": "Board a brightly painted trajinera to navigate the ancient Aztec chinampa waterway system.",
+        "es": "Aborda una trajinera tradicional para navegar entre los canales y chinampas prehispánicas."
+      }
+    }
+  ],
+  "faqs": [
+    {
+      "question": {
+        "en": "Is the Xochimilco boat ride included in the price?",
+        "es": "¿El paseo en trajinera está incluido en el precio?"
+      },
+      "answer": {
+        "en": "Yes. Both the trajinera cruise and pier access are fully covered in your ticket.",
+        "es": "Sí. Tanto el paseo en trajinera como el acceso al embarcadero están incluidos."
+      }
+    },
+    {
+      "question": {
+        "en": "Is this a private boat or small-group experience?",
+        "es": "¿Es un recorrido privado o en grupo pequeño?"
+      },
+      "answer": {
+        "en": "This is a curated small-group tour (max 16 travelers) sharing a dedicated SAT Mexico trajinera so the atmosphere stays lively and comfortable.",
+        "es": "Es un tour en grupo pequeño (máximo 16 viajeros) a bordo de una trajinera dedicada para nuestro grupo."
+      }
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Marcus T.",
+      "origin": "Seattle, WA",
+      "rating": 5,
+      "date": "2026-10",
+      "source": "Google Reviews",
+      "quote": {
+        "en": "UNAM blew us away — we would never have understood the symbolism of the murals on our own. Xochimilco afterwards was pure joy.",
+        "es": "La UNAM nos dejó sin palabras; jamás habríamos entendido el simbolismo de los murales solos. Y Xochimilco después fue pura alegría."
+      }
+    },
+    {
+      "author": "Elena G.",
+      "origin": "Toronto, Canada",
+      "rating": 5,
+      "date": "2026-08",
+      "source": "Google Reviews",
+      "quote": {
+        "en": "Punctual driver, spotless vehicle, and no awkward upsells on the canal. Exactly what was promised.",
+        "es": "Conductor puntual, vehículo impecable y cero presiones de venta en el canal. Exactamente lo prometido."
+      }
+    }
+  ]
+}

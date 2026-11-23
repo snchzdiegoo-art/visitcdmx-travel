@@ -1,0 +1,167 @@
+{
+  "bokunId": "630159",
+  "internalCode": "110186P47",
+  "slug": "mexico-city-private-transportation",
+  "order": 8,
+  "catalogType": "transfer",
+  "sectionId": "transfers",
+  "arivalOperatorType": "Transportation",
+  "arivalCategory": "Transportation > Private Transfers",
+  "arivalTags": ["Private Transfer", "Airport MEX / NLU", "Executive SUV", "Chauffeur", "Door-to-Door"],
+  "neighborhood": "centro-reforma",
+  "gttdEligible": "no",
+  "directWebRateBadge": true,
+  "featured": false,
+  "groupType": "private",
+  "maxGroupSize": 10,
+  "durationHours": 2,
+  "durationLabel": {
+    "en": "Flexible · Private Door-to-Door",
+    "es": "Flexible · Privado Puerta a Puerta"
+  },
+  "priceUsd": 65,
+  "otaComparisonUsd": 85,
+  "title": {
+    "en": "Mexico City Private Transportation",
+    "es": "Traslado Privado en Ciudad de México"
+  },
+  "shortTagline": {
+    "en": "Pre-booked executive SUVs & vans for MEX airport arrivals, hotel transfers, and custom city rides.",
+    "es": "Camionetas ejecutivas reservadas para llegadas al AICM, hoteles y traslados a medida en CDMX."
+  },
+  "summary": {
+    "en": "Skip airport taxi lines with a vetted bilingual chauffeur, live flight tracking, and modern air-conditioned executive vehicle directly between Mexico City Airport (MEX/NLU) and your hotel in Roma, Condesa, Polanco, or Reforma.",
+    "es": "Evita filas en el aeropuerto con chofer bilingüe verificado, monitoreo de vuelo en tiempo real y camioneta ejecutiva con aire acondicionado entre el AICM/AIFA y tu hotel en Roma, Condesa, Polanco o Reforma."
+  },
+  "editorialIntro": {
+    "en": "Your first hour in Mexico City sets the tone for the whole trip. Book a private, fixed-rate executive transfer directly with SAT Mexico — flight monitoring, meet-and-greet signage, and direct WhatsApp dispatch included, whether booked standalone or added after your tour.",
+    "es": "Tu primera hora en Ciudad de México marca el tono de todo el viaje. Reserva un traslado privado con tarifa fija directo con SAT Mexico: monitoreo de vuelo, recepción personalizada y coordinación directa por WhatsApp."
+  },
+  "heroImage": "/images/tour-private-transfer.jpg",
+  "heroImageAlt": {
+    "en": "Modern black executive SUV parked along tree-lined Paseo de la Reforma in Mexico City with professional chauffeur",
+    "es": "Camioneta ejecutiva moderna en Paseo de la Reforma con chofer profesional en Ciudad de México"
+  },
+  "gallery": [
+    {
+      "src": "/images/tour-private-transfer.jpg",
+      "alt": {
+        "en": "Executive private transfer vehicle in Mexico City",
+        "es": "Vehículo ejecutivo de traslado privado en Ciudad de México"
+      }
+    }
+  ],
+  "meetingPoint": {
+    "name": {
+      "en": "MEX / NLU Airport Arrivals Gate or Your CDMX Hotel Lobby",
+      "es": "Puerta de Llegadas AICM / AIFA o Lobby de tu Hotel en CDMX"
+    },
+    "address": "Aeropuerto Internacional de la Ciudad de México (MEX) & Central CDMX",
+    "pickupIncluded": true,
+    "mapQuery": "Mexico City International Airport"
+  },
+  "included": {
+    "en": [
+      "100% private modern air-conditioned SUV or executive van (never shared)",
+      "Real-time flight tracking & 60 minutes complimentary airport wait time",
+      "Airport parking fees, tolls, and bottled water onboard",
+      "Direct WhatsApp dispatch confirmation with driver name & license plate"
+    ],
+    "es": [
+      "SUV o van ejecutiva 100% privada con aire acondicionado (nunca compartida)",
+      "Monitoreo de vuelo en tiempo real y 60 minutos de cortesía en llegadas",
+      "Estacionamiento de aeropuerto, casetas y agua embotellada a bordo",
+      "Confirmación directa por WhatsApp con nombre de chofer y placas"
+    ]
+  },
+  "notIncluded": {
+    "en": [
+      "Additional unscheduled hourly stops (available on custom request)",
+      "Optional driver gratuity"
+    ],
+    "es": [
+      "Paradas adicionales por hora no programadas (cotizables bajo solicitud)",
+      "Propina opcional para el chofer"
+    ]
+  },
+  "noSurpriseNote": {
+    "en": "Fixed vehicle rate includes airport parking fees and 60 minutes of arrival waiting time if customs runs slow — zero surge pricing.",
+    "es": "Tarifa fija por vehículo que incluye estacionamiento de aeropuerto y 60 minutos de espera en llegadas internacionales — cero tarifas dinámicas."
+  },
+  "highlights": {
+    "en": [
+      "Ideal add-on before or after your CDMX tours — 30 years of SAT Mexico fleet logistics",
+      "Direct WhatsApp dispatch eliminates airport pickup anxiety",
+      "Available for MEX (Benito Juárez), NLU (Felipe Ángeles) & private hourly charter"
+    ],
+    "es": [
+      "Complemento ideal antes o después de tus tours — 30 años de logística de SAT Mexico",
+      "Coordinación directa por WhatsApp que elimina cualquier incertidumbre al aterrizar",
+      "Disponible para AICM (MEX), AIFA (NLU) y traslados privados por hora"
+    ]
+  },
+  "itinerary": [
+    {
+      "time": "T-24h",
+      "title": { "en": "WhatsApp Chauffeur Confirmation", "es": "Confirmación de Chofer por WhatsApp" },
+      "description": {
+        "en": "Receive your assigned driver's name, photo, vehicle plate, and exact arrival gate contact.",
+        "es": "Recibe nombre de chofer, placas del vehículo y contacto directo de despacho."
+      }
+    },
+    {
+      "time": "Arrival",
+      "title": { "en": "Meet & Greet + Direct Transfer", "es": "Recepción y Traslado Directo" },
+      "description": {
+        "en": "Your driver tracks your flight, meets you with a personalized sign, and takes you straight to your hotel door.",
+        "es": "Tu chofer monitorea tu vuelo, te recibe con letrero personalizado y te lleva directo a la puerta de tu hotel."
+      }
+    }
+  ],
+  "faqs": [
+    {
+      "question": {
+        "en": "What happens if my flight to Mexico City is delayed?",
+        "es": "¿Qué pasa si mi vuelo a Ciudad de México se retrasa?"
+      },
+      "answer": {
+        "en": "We track your flight number automatically and adjust your chauffeur's arrival time at no extra cost.",
+        "es": "Monitoreamos tu número de vuelo automáticamente y ajustamos la llegada del chofer sin cargo adicional."
+      }
+    },
+    {
+      "question": {
+        "en": "Is the price per person or per private vehicle?",
+        "es": "¿El precio es por persona o por vehículo privado?"
+      },
+      "answer": {
+        "en": "Your vehicle is 100% private for your party — select your passenger count in the live Bókun widget to see the exact vehicle class rate.",
+        "es": "Tu vehículo es 100% privado para tu grupo; selecciona el número de pasajeros en el calendario para ver la tarifa exacta por unidad."
+      }
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Michael R.",
+      "origin": "Miami, FL",
+      "rating": 5,
+      "date": "2026-10",
+      "source": "Google Reviews",
+      "quote": {
+        "en": "Immigration took almost an hour and our driver was still waiting with a smile and cold water. Flawless ride to Polanco.",
+        "es": "Migración tardó casi una hora y nuestro chofer seguía esperando con una sonrisa y agua fría. Trayecto impecable hasta Polanco."
+      }
+    },
+    {
+      "author": "Valeria M.",
+      "origin": "Guadalajara, MX",
+      "rating": 5,
+      "date": "2026-09",
+      "source": "Google Reviews",
+      "quote": {
+        "en": "Camioneta impecable, confirmación puntual por WhatsApp y tarifa clara sin sorpresas al salir del AICM.",
+        "es": "Camioneta impecable, confirmación puntual por WhatsApp y tarifa clara sin sorpresas al salir del AICM."
+      }
+    }
+  ]
+}

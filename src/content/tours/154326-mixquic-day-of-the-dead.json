@@ -1,0 +1,169 @@
+{
+  "bokunId": "154326",
+  "internalCode": "SAT_MIXQUIC_DOD",
+  "slug": "mixquic-day-of-the-dead",
+  "order": 7,
+  "catalogType": "seasonal",
+  "sectionId": "seasonal",
+  "arivalOperatorType": "Events",
+  "arivalCategory": "Events > Cultural Festivals",
+  "arivalTags": ["Día de Muertos", "Seasonal", "Cultural Tradition", "UNESCO Heritage", "Limited Dates"],
+  "neighborhood": "xochimilco",
+  "gttdEligible": "conditional",
+  "directWebRateBadge": true,
+  "featured": false,
+  "seasonalWindow": {
+    "en": "Annual Season: October 31 – November 2",
+    "es": "Temporada Anual: 31 de octubre – 2 de noviembre"
+  },
+  "groupType": "small-group",
+  "maxGroupSize": 16,
+  "durationHours": 8,
+  "durationLabel": {
+    "en": "8 hours · Seasonal Evening Experience",
+    "es": "8 horas · Experiencia Nocturna de Temporada"
+  },
+  "priceUsd": 145,
+  "otaComparisonUsd": 175,
+  "title": {
+    "en": "Mixquic Day of the Dead Celebrations",
+    "es": "Celebración de Día de Muertos en Mixquic"
+  },
+  "shortTagline": {
+    "en": "Witness La Alumbrada — thousands of marigold petals and candles illuminating San Andrés Mixquic.",
+    "es": "Presencia La Alumbrada: miles de velas y flores de cempasúchil iluminando San Andrés Mixquic."
+  },
+  "summary": {
+    "en": "Travel with deep cultural respect to San Andrés Mixquic for Mexico City's most authentic Día de Muertos candlelight vigil (La Alumbrada), guided by local historians with round-trip transport and priority seasonal access.",
+    "es": "Viaja con profundo respeto cultural a San Andrés Mixquic para vivir la velada de Día de Muertos más auténtica de la capital (La Alumbrada), con guías historiadores y transporte redondo."
+  },
+  "editorialIntro": {
+    "en": "Once a year at dusk on November 1 and 2, the lights of San Andrés Mixquic go dark and thousands of beeswax candles ignite across marigold-draped family altars. Because dates sell out months ahead, book open October–November seats directly or join our Priority Waitlist for the upcoming season.",
+    "es": "Una vez al año, al anochecer del 1 y 2 de noviembre, el pueblo de San Andrés Mixquic apaga sus luces para encender miles de velas sobre tumbas tapizadas de cempasúchil. Reserva fechas abiertas en temporada o regístrate en nuestra Lista de Espera Prioritaria."
+  },
+  "heroImage": "/images/tour-mixquic.jpg",
+  "heroImageAlt": {
+    "en": "Candlelit marigold flowers and traditional Day of the Dead vigil glow in San Andrés Mixquic",
+    "es": "Flores de cempasúchil iluminadas con velas durante la tradicional Alumbrada en San Andrés Mixquic"
+  },
+  "gallery": [
+    {
+      "src": "/images/tour-mixquic.jpg",
+      "alt": {
+        "en": "La Alumbrada candlelight vigil in Mixquic",
+        "es": "Velada de La Alumbrada en Mixquic"
+      }
+    }
+  ],
+  "meetingPoint": {
+    "name": {
+      "en": "Central CDMX Departure Point (Paseo de la Reforma)",
+      "es": "Punto de Salida en Paseo de la Reforma, CDMX"
+    },
+    "address": "Paseo de la Reforma, Cuauhtémoc, CDMX",
+    "pickupIncluded": true,
+    "mapQuery": "San Andres Mixquic, Tlahuac, Mexico City"
+  },
+  "included": {
+    "en": [
+      "Round-trip private-charter transport between central CDMX and Mixquic",
+      "Certified cultural historian guide explaining Día de Muertos rituals",
+      "Guided walk through town ofrendas, artisan markets & La Alumbrada cemetery vigil",
+      "Traditional pan de muerto & warm atole / hot chocolate tasting"
+    ],
+    "es": [
+      "Transporte redondo dedicado entre zonas céntricas de CDMX y Mixquic",
+      "Guía historiador certificado explicando el simbolismo del Día de Muertos",
+      "Recorrido guiado por ofrendas comunitarias y la velada de La Alumbrada",
+      "Degustación tradicional de pan de muerto y chocolate caliente / atole"
+    ]
+  },
+  "notIncluded": {
+    "en": [
+      "Dinner and personal craft purchases",
+      "Optional gratuities"
+    ],
+    "es": [
+      "Cena y compras personales de artesanías",
+      "Propinas opcionales"
+    ]
+  },
+  "noSurpriseNote": {
+    "en": "Operates exclusively during Día de Muertos (Oct 31 – Nov 2). Outside those dates, join our Priority Waitlist for early-bird access before seats open to OTAs.",
+    "es": "Opera exclusivamente en temporada de Día de Muertos (31 oct – 2 nov). Fuera de temporada, regístrate en nuestra Lista de Espera Prioritaria antes de que abra el inventario en OTAs."
+  },
+  "highlights": {
+    "en": [
+      "Experience one of Mexico's most moving UNESCO-recognized living traditions",
+      "Hassle-free late-night return transport to central CDMX after the vigil",
+      "Priority waitlist notifies you first when next season's dates release"
+    ],
+    "es": [
+      "Vive una de las tradiciones vivas más conmovedoras reconocidas por la UNESCO",
+      "Regreso coordinado y puntual al centro de CDMX al concluir la velada",
+      "Lista de espera prioritaria con aviso anticipado al liberar fechas"
+    ]
+  },
+  "itinerary": [
+    {
+      "time": "15:30",
+      "title": { "en": "Afternoon Departure to Tláhuac / Mixquic", "es": "Salida vespertina rumbo a Mixquic" },
+      "description": {
+        "en": "Early departure from central CDMX to arrive ahead of evening holiday traffic.",
+        "es": "Salida anticipada desde CDMX para llegar antes del tráfico festivo nocturno."
+      }
+    },
+    {
+      "time": "17:30",
+      "title": { "en": "Town Ofrendas & Pan de Muerto", "es": "Ofrendas Comunitarias y Pan de Muerto" },
+      "description": {
+        "en": "Walk the decorated streets of Mixquic, learn altar symbolism, and enjoy pan de muerto.",
+        "es": "Recorre las calles decoradas de Mixquic, conoce el significado de cada ofrenda y disfruta pan de muerto."
+      }
+    },
+    {
+      "time": "19:30",
+      "title": { "en": "La Alumbrada Candlelight Vigil", "es": "La Alumbrada" },
+      "description": {
+        "en": "Witness the iconic candle lighting ceremony with respectful cultural guidance before returning to CDMX.",
+        "es": "Presencia el encendido de miles de velas con guía cultural respetuosa antes del regreso a CDMX."
+      }
+    }
+  ],
+  "faqs": [
+    {
+      "question": {
+        "en": "Can I book Mixquic outside of October and November?",
+        "es": "¿Puedo reservar Mixquic fuera de octubre y noviembre?"
+      },
+      "answer": {
+        "en": "La Alumbrada only happens around November 1–2 each year. Outside the season, use the Priority Waitlist box on this page to reserve early-release notifications.",
+        "es": "La Alumbrada ocurre únicamente alrededor del 1 y 2 de noviembre. Fuera de temporada puedes registrarte en la Lista de Espera Prioritaria aquí mismo."
+      }
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Claire B.",
+      "origin": "Vancouver, Canada",
+      "rating": 5,
+      "date": "2026-11",
+      "source": "Google Reviews",
+      "quote": {
+        "en": "Deeply moving and handled with total cultural sensitivity. Having our dedicated van waiting afterwards made late-night travel effortless.",
+        "es": "Profundamente conmovedor y guiado con enorme respeto cultural. Contar con nuestra camioneta dedicada al regreso hizo todo facilísimo."
+      }
+    },
+    {
+      "author": "Andrés P.",
+      "origin": "Bogotá, Colombia",
+      "rating": 5,
+      "date": "2026-11",
+      "source": "Google Reviews",
+      "quote": {
+        "en": "Una experiencia que hay que vivir al menos una vez. Excelente coordinación del equipo de SAT Mexico.",
+        "es": "Una experiencia que hay que vivir al menos una vez. Excelente coordinación del equipo de SAT Mexico."
+      }
+    }
+  ]
+}
